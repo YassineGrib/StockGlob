@@ -1,0 +1,16 @@
+program Project1;
+
+uses
+  Vcl.Forms,
+  unHome in '..\..\Embarcadero\Studio\Projects\unHome.pas' {Form1},
+  DmData in '..\..\Embarcadero\Studio\Projects\DmData.pas' {DataM: TDataModule};
+
+{$R *.res}
+
+begin
+  Application.Initialize;
+  Application.MainFormOnTaskbar := True;
+  Application.CreateForm(TForm1, Form1);
+  Application.CreateForm(TDataM, DataM);
+  Application.Run;
+end.

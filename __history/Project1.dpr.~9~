@@ -1,0 +1,28 @@
+program Project1;
+
+uses
+  Vcl.Forms,
+  unHome in 'unHome.pas' {fmHome},
+  DmData in 'DmData.pas' {DataM: TDataModule},
+  Unlogin in 'Unlogin.pas' {fmlogin},
+  UnClients in 'UnClients.pas' {fmClients},
+  UnSuppliers in 'UnSuppliers.pas' {fmSuppliers},
+  UnProduits in 'UnProduits.pas' {FmProduits},
+  UnCategories in 'UnCategories.pas' {FmCategories},
+  UnMarques in 'UnMarques.pas' {FMmarques};
+
+{$R *.res}
+
+begin
+  Application.Initialize;
+  Application.MainFormOnTaskbar := True;
+  Application.CreateForm(Tfmlogin, fmlogin);
+  Application.CreateForm(TfmHome, fmHome);
+  Application.CreateForm(TFmProduits, FmProduits);
+  Application.CreateForm(TFMmarques, FMmarques);
+  Application.CreateForm(TFmCategories, FmCategories);
+  Application.CreateForm(TfmSuppliers, fmSuppliers);
+  Application.CreateForm(TfmClients, fmClients);
+  Application.CreateForm(TDataM, DataM);
+  Application.Run;
+end.

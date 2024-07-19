@@ -1,0 +1,48 @@
+unit UnClients;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, Vcl.Buttons, Vcl.ExtCtrls,
+  Vcl.Imaging.pngimage, Data.DB, Vcl.Grids, Vcl.DBGrids;
+
+type
+  TForm3 = class(TForm)
+    TitelPanel: TPanel;
+    spExit: TSpeedButton;
+    spLogo: TSpeedButton;
+    Titel: TLabel;
+    logoPanel: TPanel;
+    Image1: TImage;
+    DBGrid: TDBGrid;
+    ToolsPanel: TPanel;
+    Supprimer: TSpeedButton;
+    Consulter: TSpeedButton;
+    Ajouter: TSpeedButton;
+    Modifier: TSpeedButton;
+    Find: TSpeedButton;
+    Exporter: TSpeedButton;
+    edFilter: TEdit;
+    procedure spExitClick(Sender: TObject);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  Form3: TForm3;
+
+implementation
+
+{$R *.dfm}
+
+uses DmData;
+
+procedure TForm3.spExitClick(Sender: TObject);
+begin
+Close;
+end;
+
+end.

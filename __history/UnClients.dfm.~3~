@@ -1,0 +1,95 @@
+object Form3: TForm3
+  Left = 0
+  Top = 0
+  BorderStyle = bsNone
+  ClientHeight = 515
+  ClientWidth = 987
+  Color = clWhite
+  Font.Charset = ANSI_CHARSET
+  Font.Color = clWindowText
+  Font.Height = -18
+  Font.Name = 'Roboto Cn'
+  Font.Style = []
+  Position = poDesktopCenter
+  Scaled = False
+  TextHeight = 22
+  object TitelPanel: TPanel
+    Left = 0
+    Top = 0
+    Width = 987
+    Height = 42
+    Margins.Left = 4
+    Margins.Top = 4
+    Margins.Right = 4
+    Margins.Bottom = 4
+    Align = alTop
+    BevelOuter = bvNone
+    Color = 16772569
+    ParentBackground = False
+    TabOrder = 0
+    StyleElements = []
+    ExplicitLeft = -42
+    ExplicitWidth = 1029
+    object spExit: TSpeedButton
+      AlignWithMargins = True
+      Left = 951
+      Top = 4
+      Width = 32
+      Height = 34
+      Margins.Left = 10
+      Margins.Top = 4
+      Margins.Right = 4
+      Margins.Bottom = 4
+      Align = alRight
+      ImageIndex = 12
+      Images = DataM.ilNavigation
+      HotImageIndex = 12
+      Flat = True
+      ExplicitLeft = 968
+      ExplicitTop = 2
+      ExplicitHeight = 32
+    end
+    object spLogo: TSpeedButton
+      AlignWithMargins = True
+      Left = 4
+      Top = 4
+      Width = 32
+      Height = 34
+      Margins.Left = 4
+      Margins.Top = 4
+      Margins.Right = 4
+      Margins.Bottom = 4
+      Align = alLeft
+      ImageIndex = 11
+      Images = DataM.ilNavigation
+      Flat = True
+      ExplicitLeft = -7
+      ExplicitTop = -6
+      ExplicitHeight = 40
+    end
+    object Titel: TLabel
+      AlignWithMargins = True
+      Left = 44
+      Top = 4
+      Width = 206
+      Height = 34
+      Margins.Left = 4
+      Margins.Top = 4
+      Margins.Right = 4
+      Margins.Bottom = 4
+      Align = alLeft
+      Caption = 'G-Stock | Gestion Des Clients'
+      Color = clBackground
+      Font.Charset = ANSI_CHARSET
+      Font.Color = clBlack
+      Font.Height = -18
+      Font.Name = 'Roboto Cn'
+      Font.Style = []
+      ParentColor = False
+      ParentFont = False
+      Layout = tlCenter
+      StyleElements = []
+      ExplicitHeight = 22
+    end
+  end
+end

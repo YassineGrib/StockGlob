@@ -1,0 +1,28 @@
+program Project1;
+
+uses
+  Vcl.Forms,
+  unHome in 'unHome.pas' {Form1},
+  DmData in 'DmData.pas' {DataM: TDataModule},
+  Unlogin in 'Unlogin.pas' {Form2},
+  UnClients in 'UnClients.pas' {Form3},
+  UnSuppliers in 'UnSuppliers.pas' {Form4},
+  UnProduits in 'UnProduits.pas' {Form5},
+  UnCategories in 'UnCategories.pas' {Form6},
+  UnMarques in 'UnMarques.pas' {Form7};
+
+{$R *.res}
+
+begin
+  Application.Initialize;
+  Application.MainFormOnTaskbar := True;
+  Application.CreateForm(TForm6, Form6);
+  Application.CreateForm(TForm1, Form1);
+  Application.CreateForm(TForm5, Form5);
+  Application.CreateForm(TForm4, Form4);
+  Application.CreateForm(TForm3, Form3);
+  Application.CreateForm(TForm2, Form2);
+  Application.CreateForm(TDataM, DataM);
+  Application.CreateForm(TForm7, Form7);
+  Application.Run;
+end.

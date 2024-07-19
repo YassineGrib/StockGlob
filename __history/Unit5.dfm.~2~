@@ -1,0 +1,17 @@
+object Form5: TForm5
+  Left = 0
+  Top = 0
+  BorderStyle = bsNone
+  Caption = 'Form5'
+  ClientHeight = 525
+  ClientWidth = 987
+  Color = clWhite
+  Font.Charset = ANSI_CHARSET
+  Font.Color = clWindowText
+  Font.Height = -18
+  Font.Name = 'Roboto Cn'
+  Font.Style = []
+  Position = poDesktopCenter
+  Scaled = False
+  TextHeight = 22
+end
