@@ -109,8 +109,8 @@
             <FormType>dfm</FormType>
             <DesignClass>TDataModule</DesignClass>
         </DCCReference>
-        <DCCReference Include="Unlogin.pas">
-            <Form>fmlogin</Form>
+        <DCCReference Include="UnAuthentification.pas">
+            <Form>fmAuthentification</Form>
             <FormType>dfm</FormType>
         </DCCReference>
         <DCCReference Include="UnClients.pas">
@@ -131,6 +131,10 @@
         </DCCReference>
         <DCCReference Include="UnMarques.pas">
             <Form>FMmarques</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
+        <DCCReference Include="UnClients_OP.pas">
+            <Form>fmClients_OP</Form>
             <FormType>dfm</FormType>
         </DCCReference>
         <BuildConfiguration Include="Base">

@@ -3,7 +3,7 @@ object fmClients: TfmClients
   Top = 0
   BorderStyle = bsNone
   ClientHeight = 532
-  ClientWidth = 987
+  ClientWidth = 979
   Color = clWhite
   Font.Charset = ANSI_CHARSET
   Font.Color = clWindowText
@@ -13,12 +13,13 @@ object fmClients: TfmClients
   Position = poDesktopCenter
   Scaled = False
   StyleElements = [seFont, seBorder]
+  OnShow = FormShow
   TextHeight = 22
   object TitelPanel: TPanel
     AlignWithMargins = True
     Left = 4
     Top = 4
-    Width = 979
+    Width = 971
     Height = 42
     Margins.Left = 4
     Margins.Top = 4
@@ -30,12 +31,10 @@ object fmClients: TfmClients
     ParentBackground = False
     TabOrder = 0
     StyleElements = []
-    ExplicitLeft = 0
-    ExplicitTop = 0
-    ExplicitWidth = 987
+    ExplicitWidth = 979
     object spExit: TSpeedButton
       AlignWithMargins = True
-      Left = 943
+      Left = 935
       Top = 4
       Width = 32
       Height = 34
@@ -100,7 +99,7 @@ object fmClients: TfmClients
     AlignWithMargins = True
     Left = 30
     Top = 70
-    Width = 927
+    Width = 919
     Height = 130
     Margins.Left = 30
     Margins.Top = 20
@@ -112,10 +111,10 @@ object fmClients: TfmClients
     ParentBackground = False
     TabOrder = 1
     StyleElements = []
-    ExplicitLeft = 134
+    ExplicitWidth = 927
     object Image1: TImage
       AlignWithMargins = True
-      Left = 791
+      Left = 783
       Top = 0
       Width = 121
       Height = 130
@@ -364,21 +363,15 @@ object fmClients: TfmClients
     AlignWithMargins = True
     Left = 0
     Top = 286
-    Width = 987
+    Width = 979
     Height = 246
     Margins.Left = 0
     Margins.Top = 0
     Margins.Right = 0
     Margins.Bottom = 0
     Align = alBottom
-    Font.Charset = ANSI_CHARSET
-    Font.Color = clWindowText
-    Font.Height = -18
-    Font.Name = 'Roboto Lt'
-    Font.Style = [fsBold]
     Options = [dgTitles, dgColumnResize, dgColLines, dgRowLines, dgTabs, dgRowSelect, dgConfirmDelete, dgCancelOnExit, dgTitleClick, dgTitleHotTrack]
     ParentColor = True
-    ParentFont = False
     TabOrder = 2
     TitleFont.Charset = ANSI_CHARSET
     TitleFont.Color = clWindowText
@@ -389,64 +382,44 @@ object fmClients: TfmClients
       item
         Alignment = taCenter
         Expanded = False
-        FieldName = 'EmployeeID'
+        FieldName = 'ClientID'
         Title.Alignment = taCenter
-        Title.Caption = 'Employ'#233' ID'
+        Title.Caption = 'Client ID'
         Width = 100
         Visible = True
       end
       item
         Alignment = taCenter
         Expanded = False
-        FieldName = 'DoctorID'
+        FieldName = 'NomClient'
         Title.Alignment = taCenter
-        Width = 100
+        Title.Caption = 'Nom Client'
+        Width = 300
         Visible = True
       end
       item
         Alignment = taCenter
         Expanded = False
-        FieldName = 'FullName'
-        ImeName = 'US'
+        FieldName = 'NumTelephone'
         Title.Alignment = taCenter
-        Title.Caption = 'Nom Complet'
+        Title.Caption = 'Num Telephone'
         Width = 200
         Visible = True
       end
       item
         Alignment = taCenter
         Expanded = False
-        FieldName = 'PhoneNumber'
-        ImeName = 'US'
+        FieldName = 'Email'
         Title.Alignment = taCenter
-        Title.Caption = 'T'#233'l'#233'phone'
-        Width = 120
+        Width = 200
         Visible = True
       end
       item
         Alignment = taCenter
         Expanded = False
-        FieldName = 'Specialty'
+        FieldName = 'Statut'
         Title.Alignment = taCenter
-        Width = 250
-        Visible = True
-      end
-      item
-        Alignment = taCenter
-        Expanded = False
-        FieldName = 'LicenseNumber'
-        Title.Alignment = taCenter
-        Title.Caption = 'License N'#176
-        Width = 100
-        Visible = True
-      end
-      item
-        Alignment = taCenter
-        Expanded = False
-        FieldName = 'YearsOfExperience'
-        Title.Alignment = taCenter
-        Title.Caption = 'Experience'
-        Width = 100
+        Width = 150
         Visible = True
       end>
   end
@@ -454,7 +427,7 @@ object fmClients: TfmClients
     AlignWithMargins = True
     Left = 0
     Top = 223
-    Width = 987
+    Width = 979
     Height = 48
     Margins.Left = 0
     Margins.Top = 0
@@ -466,7 +439,7 @@ object fmClients: TfmClients
     ParentBackground = False
     TabOrder = 3
     StyleElements = [seFont, seBorder]
-    ExplicitTop = 42
+    ExplicitWidth = 987
     object Supprimer: TSpeedButton
       AlignWithMargins = True
       Left = 416
@@ -514,6 +487,7 @@ object fmClients: TfmClients
       HotImageIndex = 0
       Flat = True
       StyleElements = []
+      OnClick = AjouterClick
       ExplicitLeft = 13
       ExplicitTop = 4
       ExplicitHeight = 40
@@ -536,7 +510,7 @@ object fmClients: TfmClients
     end
     object Find: TSpeedButton
       AlignWithMargins = True
-      Left = 731
+      Left = 723
       Top = 3
       Width = 35
       Height = 42
@@ -567,7 +541,7 @@ object fmClients: TfmClients
     end
     object edFilter: TEdit
       AlignWithMargins = True
-      Left = 773
+      Left = 765
       Top = 10
       Width = 202
       Height = 28
@@ -582,6 +556,8 @@ object fmClients: TfmClients
       Ctl3D = True
       ParentCtl3D = False
       TabOrder = 0
+      OnChange = edFilterChange
+      ExplicitLeft = 773
       ExplicitHeight = 30
     end
   end

@@ -1,0 +1,82 @@
+unit UnClient_OP;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Data.DB, Vcl.Grids, Vcl.DBGrids,
+  Vcl.Imaging.pngimage, Vcl.ExtCtrls, Vcl.StdCtrls, Vcl.Buttons,
+  FireDAC.Stan.Intf, FireDAC.Stan.Option, FireDAC.Stan.Param,
+  FireDAC.Stan.Error, FireDAC.DatS, FireDAC.Phys.Intf, FireDAC.DApt.Intf,
+  FireDAC.Stan.Async, FireDAC.DApt, FireDAC.Comp.DataSet, FireDAC.Comp.Client;
+
+type
+  TfmClients_OP = class(TForm)
+    TitelPanel: TPanel;
+    spExit: TSpeedButton;
+    spLogo: TSpeedButton;
+    Titel: TLabel;
+    ToolsPanel: TPanel;
+    Ajouter: TSpeedButton;
+    Exporter: TSpeedButton;
+    ClientID: TEdit;
+    Label1: TLabel;
+    Statut: TComboBox;
+    NomClient: TEdit;
+    Label2: TLabel;
+    NumTelephone: TEdit;
+    Label5: TLabel;
+    Email: TEdit;
+    Label4: TLabel;
+    Label6: TLabel;
+    Label7: TLabel;
+    Adresse: TEdit;
+    Image2: TImage;
+    FDQuery1: TFDQuery;
+    procedure spExitClick(Sender: TObject);
+    procedure FormShow(Sender: TObject);
+
+  private
+    { Private declarations }
+     Function GetMaxClientID: Integer;
+
+  public
+    { Public declarations }
+  end;
+
+var
+  fmClients_OP: TfmClients_OP;
+
+implementation
+
+{$R *.dfm}
+
+uses DmData;
+
+procedure TfmClients_OP.FormShow(Sender: TObject);
+begin
+ClientID.Text := Format('CLT%04d', [GetMaxClientID]);
+end;
+
+Function TfmClients_OP.GetMaxClientID: Integer;
+var
+  FDQuery: TFDQuery;
+begin
+  FDQuery := TFDQuery.Create(nil);
+  try
+    FDQuery.Connection := DataM.FDConnection;
+    FDQuery.SQL.Text := 'SELECT MAX(ClientID) AS MaxID FROM TClients';
+    FDQuery.Open;
+
+    Result := FDQuery.FieldByName('MaxID').AsInteger + 1;
+  finally
+    FDQuery.Free;
+  end;
+end;
+
+procedure TfmClients_OP.spExitClick(Sender: TObject);
+begin
+Close;
+end;
+
+end.

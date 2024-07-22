@@ -2,34 +2,41 @@
 <BorlandProject>
 	<Transactions>
     <Transaction>2024/07/19 00:54:56.000.552,=C:\Users\Yassine\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
-    <Transaction>2024/07/19 00:58:51.000.119,C:\Users\Yassine\Documents\Embarcadero\Studio\Projects\Unit1.pas=C:\Users\Yassine\Documents\Embarcadero\Studio\Projects\unHome.pas</Transaction>
     <Transaction>2024/07/19 00:58:51.000.119,C:\Users\Yassine\Documents\Embarcadero\Studio\Projects\Unit1.dfm=C:\Users\Yassine\Documents\Embarcadero\Studio\Projects\unHome.dfm</Transaction>
+    <Transaction>2024/07/19 00:58:51.000.119,C:\Users\Yassine\Documents\Embarcadero\Studio\Projects\Unit1.pas=C:\Users\Yassine\Documents\Embarcadero\Studio\Projects\unHome.pas</Transaction>
     <Transaction>2024/07/19 01:04:30.000.714,=C:\Users\Yassine\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
-    <Transaction>2024/07/19 01:05:08.000.654,C:\Users\Yassine\Documents\Embarcadero\Studio\Projects\Unit1.dfm=C:\Users\Yassine\Documents\Embarcadero\Studio\Projects\DmData.dfm</Transaction>
     <Transaction>2024/07/19 01:05:08.000.654,C:\Users\Yassine\Documents\Embarcadero\Studio\Projects\Unit1.pas=C:\Users\Yassine\Documents\Embarcadero\Studio\Projects\DmData.pas</Transaction>
+    <Transaction>2024/07/19 01:05:08.000.654,C:\Users\Yassine\Documents\Embarcadero\Studio\Projects\Unit1.dfm=C:\Users\Yassine\Documents\Embarcadero\Studio\Projects\DmData.dfm</Transaction>
     <Transaction>2024/07/19 01:11:28.000.651,C:\Users\Yassine\Documents\Embarcadero\Studio\Projects\Project1.dproj=C:\Users\Yassine\Documents\GITHUB\StockGlob\Project1.dproj</Transaction>
-    <Transaction>2024/07/19 01:20:33.000.050,C:\Users\Yassine\Documents\Embarcadero\Studio\Projects\DmData.pas=C:\Users\Yassine\Documents\GITHUB\StockGlob\DmData.pas</Transaction>
     <Transaction>2024/07/19 01:20:33.000.050,C:\Users\Yassine\Documents\Embarcadero\Studio\Projects\DmData.dfm=C:\Users\Yassine\Documents\GITHUB\StockGlob\DmData.dfm</Transaction>
+    <Transaction>2024/07/19 01:20:33.000.050,C:\Users\Yassine\Documents\Embarcadero\Studio\Projects\DmData.pas=C:\Users\Yassine\Documents\GITHUB\StockGlob\DmData.pas</Transaction>
     <Transaction>2024/07/19 01:20:43.000.661,C:\Users\Yassine\Documents\Embarcadero\Studio\Projects\unHome.pas=C:\Users\Yassine\Documents\GITHUB\StockGlob\unHome.pas</Transaction>
     <Transaction>2024/07/19 01:20:43.000.661,C:\Users\Yassine\Documents\Embarcadero\Studio\Projects\unHome.dfm=C:\Users\Yassine\Documents\GITHUB\StockGlob\unHome.dfm</Transaction>
     <Transaction>2024/07/19 05:38:45.000.042,=C:\Users\Yassine\Documents\GITHUB\StockGlob\Unit2.pas</Transaction>
     <Transaction>2024/07/19 05:39:31.000.292,C:\Users\Yassine\Documents\GITHUB\StockGlob\Unit2.pas=C:\Users\Yassine\Documents\GITHUB\StockGlob\Unlogin.pas</Transaction>
     <Transaction>2024/07/19 05:39:31.000.292,C:\Users\Yassine\Documents\GITHUB\StockGlob\Unit2.dfm=C:\Users\Yassine\Documents\GITHUB\StockGlob\Unlogin.dfm</Transaction>
     <Transaction>2024/07/19 10:52:48.000.778,=C:\Users\Yassine\Documents\GITHUB\StockGlob\Unit3.pas</Transaction>
-    <Transaction>2024/07/19 10:53:32.000.603,C:\Users\Yassine\Documents\GITHUB\StockGlob\Unit3.pas=C:\Users\Yassine\Documents\GITHUB\StockGlob\UnClients.pas</Transaction>
     <Transaction>2024/07/19 10:53:32.000.603,C:\Users\Yassine\Documents\GITHUB\StockGlob\Unit3.dfm=C:\Users\Yassine\Documents\GITHUB\StockGlob\UnClients.dfm</Transaction>
+    <Transaction>2024/07/19 10:53:32.000.603,C:\Users\Yassine\Documents\GITHUB\StockGlob\Unit3.pas=C:\Users\Yassine\Documents\GITHUB\StockGlob\UnClients.pas</Transaction>
     <Transaction>2024/07/19 11:18:25.000.070,=C:\Users\Yassine\Documents\GITHUB\StockGlob\Unit4.pas</Transaction>
     <Transaction>2024/07/19 11:21:51.000.385,C:\Users\Yassine\Documents\GITHUB\StockGlob\Unit4.pas=C:\Users\Yassine\Documents\GITHUB\StockGlob\UnSuppliers.pas</Transaction>
     <Transaction>2024/07/19 11:21:51.000.385,C:\Users\Yassine\Documents\GITHUB\StockGlob\Unit4.dfm=C:\Users\Yassine\Documents\GITHUB\StockGlob\UnSuppliers.dfm</Transaction>
     <Transaction>2024/07/19 11:23:59.000.278,=C:\Users\Yassine\Documents\GITHUB\StockGlob\Unit5.pas</Transaction>
-    <Transaction>2024/07/19 11:32:22.000.073,C:\Users\Yassine\Documents\GITHUB\StockGlob\Unit5.pas=C:\Users\Yassine\Documents\GITHUB\StockGlob\UnProduits.pas</Transaction>
     <Transaction>2024/07/19 11:32:22.000.073,C:\Users\Yassine\Documents\GITHUB\StockGlob\Unit5.dfm=C:\Users\Yassine\Documents\GITHUB\StockGlob\UnProduits.dfm</Transaction>
+    <Transaction>2024/07/19 11:32:22.000.073,C:\Users\Yassine\Documents\GITHUB\StockGlob\Unit5.pas=C:\Users\Yassine\Documents\GITHUB\StockGlob\UnProduits.pas</Transaction>
     <Transaction>2024/07/19 13:06:14.000.086,=C:\Users\Yassine\Documents\GITHUB\StockGlob\Unit6.pas</Transaction>
     <Transaction>2024/07/19 13:07:05.000.330,C:\Users\Yassine\Documents\GITHUB\StockGlob\Unit6.pas=C:\Users\Yassine\Documents\GITHUB\StockGlob\UnCategories.pas</Transaction>
     <Transaction>2024/07/19 13:07:05.000.330,C:\Users\Yassine\Documents\GITHUB\StockGlob\Unit6.dfm=C:\Users\Yassine\Documents\GITHUB\StockGlob\UnCategories.dfm</Transaction>
     <Transaction>2024/07/19 13:34:12.000.589,=C:\Users\Yassine\Documents\GITHUB\StockGlob\Unit7.pas</Transaction>
     <Transaction>2024/07/19 13:35:07.000.825,C:\Users\Yassine\Documents\GITHUB\StockGlob\Unit7.dfm=C:\Users\Yassine\Documents\GITHUB\StockGlob\UnMarques.dfm</Transaction>
     <Transaction>2024/07/19 13:35:07.000.825,C:\Users\Yassine\Documents\GITHUB\StockGlob\Unit7.pas=C:\Users\Yassine\Documents\GITHUB\StockGlob\UnMarques.pas</Transaction>
+    <Transaction>2024/07/21 15:34:04.000.317,=C:\Users\Yassine\Documents\GITHUB\StockGlob\Unit1.pas</Transaction>
+    <Transaction>2024/07/21 15:38:34.000.633,C:\Users\Yassine\Documents\GITHUB\StockGlob\Unit1.pas=C:\Users\Yassine\Documents\GITHUB\StockGlob\UnClient_OP.pas</Transaction>
+    <Transaction>2024/07/21 15:38:34.000.633,C:\Users\Yassine\Documents\GITHUB\StockGlob\Unit1.dfm=C:\Users\Yassine\Documents\GITHUB\StockGlob\UnClient_OP.dfm</Transaction>
+    <Transaction>2024/07/21 18:33:41.174,C:\Users\Yassine\Documents\GITHUB\StockGlob\UnClients_OP.pas=C:\Users\Yassine\Documents\GITHUB\StockGlob\UnClient_OP.pas</Transaction>
+    <Transaction>2024/07/21 18:33:41.174,C:\Users\Yassine\Documents\GITHUB\StockGlob\UnClients_OP.dfm=C:\Users\Yassine\Documents\GITHUB\StockGlob\UnClient_OP.dfm</Transaction>
+    <Transaction>2024/07/21 18:41:54.581,C:\Users\Yassine\Documents\GITHUB\StockGlob\UnAuthentification.pas=C:\Users\Yassine\Documents\GITHUB\StockGlob\Unlogin.pas</Transaction>
+    <Transaction>2024/07/21 18:41:54.581,C:\Users\Yassine\Documents\GITHUB\StockGlob\UnAuthentification.dfm=C:\Users\Yassine\Documents\GITHUB\StockGlob\Unlogin.dfm</Transaction>
   </Transactions>
 	<ProjectSortOrder AutoSort="0" SortType="0">
     <File Path="DmData.pas"/>
@@ -40,13 +47,15 @@
     <File Path="UnClients.dfm"/>
     <File Path="UnSuppliers.pas"/>
     <File Path="UnSuppliers.dfm"/>
-    <File Path="Unlogin.pas"/>
-    <File Path="Unlogin.dfm"/>
+    <File Path="UnAuthentification.pas"/>
+    <File Path="UnAuthentification.dfm"/>
     <File Path="UnProduits.pas"/>
     <File Path="UnProduits.dfm"/>
     <File Path="UnCategories.pas"/>
     <File Path="UnCategories.dfm"/>
     <File Path="UnMarques.pas"/>
     <File Path="UnMarques.dfm"/>
+    <File Path="UnClients_OP.pas"/>
+    <File Path="UnClients_OP.dfm"/>
   </ProjectSortOrder>
 </BorlandProject>

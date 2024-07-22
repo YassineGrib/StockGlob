@@ -1,0 +1,166 @@
+﻿unit UnClient_OP;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Data.DB, Vcl.Grids, Vcl.DBGrids,
+  Vcl.Imaging.pngimage, Vcl.ExtCtrls, Vcl.StdCtrls, Vcl.Buttons,
+  FireDAC.Stan.Intf, FireDAC.Stan.Option, FireDAC.Stan.Param,
+  FireDAC.Stan.Error, FireDAC.DatS, FireDAC.Phys.Intf, FireDAC.DApt.Intf,
+  FireDAC.Stan.Async, FireDAC.DApt, FireDAC.Comp.DataSet, FireDAC.Comp.Client, System.RegularExpressions;
+
+type
+  TfmClients_OP = class(TForm)
+    TitelPanel: TPanel;
+    spExit: TSpeedButton;
+    spLogo: TSpeedButton;
+    Titel: TLabel;
+    ToolsPanel: TPanel;
+    Valider: TSpeedButton;
+    Exporter: TSpeedButton;
+    ClientID: TEdit;
+    Label1: TLabel;
+    Statut: TComboBox;
+    NomClient: TEdit;
+    Label2: TLabel;
+    NumTelephone: TEdit;
+    Label5: TLabel;
+    Email: TEdit;
+    Label4: TLabel;
+    Label6: TLabel;
+    Label7: TLabel;
+    Adresse: TEdit;
+    Image2: TImage;
+    procedure spExitClick(Sender: TObject);
+    procedure FormShow(Sender: TObject);
+    procedure ValiderClick(Sender: TObject);
+    procedure EmailExit(Sender: TObject);
+    procedure NumTelephoneExit(Sender: TObject);
+    procedure FormKeyPress(Sender: TObject; var Key: Char);
+
+  private
+    { Private declarations }
+     Function GetMaxClientID: Integer;
+
+  public
+    { Public declarations }
+  end;
+
+var
+  fmClients_OP: TfmClients_OP;
+
+implementation
+
+{$R *.dfm}
+
+uses DmData;
+
+procedure TfmClients_OP.ValiderClick(Sender: TObject);
+var
+  FDQueryCheckExists, FDQueryInsert: TFDQuery;
+begin
+  if DataM.OP = 'Ajouter' then
+  begin
+    // تحقق من أن جميع الحقول الأساسية مدخلة
+    if (NomClient.Text = '') or (NumTelephone.Text = '') then
+    begin
+      ShowMessage('الاسم ورقم الهاتف هما حقول مطلوبة.');
+      Exit;
+    end;
+
+    // تحقق من عدم وجود العميل بالفعل بناءً على رقم الهاتف
+    FDQueryCheckExists := TFDQuery.Create(nil);
+    try
+      FDQueryCheckExists.Connection := DataM.FDConnection;
+      FDQueryCheckExists.SQL.Text := 'SELECT COUNT(*) FROM TClients WHERE PhoneNumber = :PhoneNumber';
+      FDQueryCheckExists.ParamByName('PhoneNumber').AsString := NumTelephone.Text;
+      FDQueryCheckExists.Open;
+      if FDQueryCheckExists.Fields[0].AsInteger > 0 then
+      begin
+        ShowMessage('العميل موجود بالفعل.');
+        Exit;
+      end;
+    finally
+      FDQueryCheckExists.Free;
+    end;
+
+    // إذا كانت جميع التحققات ناجحة، أدخل البيانات في جدول العملاء
+    FDQueryInsert := TFDQuery.Create(nil);
+    try
+      FDQueryInsert.Connection := DataM.FDConnection;
+      FDQueryInsert.SQL.Text := 'INSERT INTO TClients (ClientID, ClientName, Address, PhoneNumber, Email, Status, UserID) ' +
+                                'VALUES (:ClientID, :ClientName, :Address, :PhoneNumber, :Email, :Status, :UserID)';
+      FDQueryInsert.ParamByName('ClientID').AsString := ClientID.Text;
+      FDQueryInsert.ParamByName('ClientName').AsString := NomClient.Text;
+      FDQueryInsert.ParamByName('Address').AsString := Adresse.Text;
+      FDQueryInsert.ParamByName('PhoneNumber').AsString := NumTelephone.Text;
+      FDQueryInsert.ParamByName('Email').AsString := Email.Text;
+      FDQueryInsert.ParamByName('Status').AsString := Statut.Text;
+      FDQueryInsert.ParamByName('UserID').AsString := DataM.Utilisateur; // التأكد من تحديد الاتصال المناسب
+      FDQueryInsert.ExecSQL;
+      ShowMessage('تم إضافة العميل بنجاح.');
+    finally
+      FDQueryInsert.Free;
+    end;
+  end;
+end;
+
+
+procedure TfmClients_OP.EmailExit(Sender: TObject);
+begin
+  // تحقق من صحة البريد الإلكتروني إذا تم إدخاله
+  if (Email.Text <> '') and not TRegEx.IsMatch(Email.Text, '^[\w\.-]+@[\w\.-]+\.\w+$') then
+  begin
+    ShowMessage('البريد الإلكتروني غير صحيح.');
+    Email.SetFocus;
+  end;
+end;
+
+procedure TfmClients_OP.FormKeyPress(Sender: TObject; var Key: Char);
+begin
+  if Key = #13 then // تحقق من الضغط على مفتاح Enter
+  begin
+    Key := #0; // منع صوت "الجرس" الذي يصدر عند الضغط على Enter
+    ValiderClick(Sender); // استدعاء الإجراء ValiderClick
+  end;
+end;
+
+procedure TfmClients_OP.FormShow(Sender: TObject);
+begin
+ClientID.Text := Format('CLT%04d', [GetMaxClientID]);
+end;
+
+Function TfmClients_OP.GetMaxClientID: Integer;
+var
+  FDQuery: TFDQuery;
+begin
+  FDQuery := TFDQuery.Create(nil);
+  try
+    FDQuery.Connection := DataM.FDConnection;
+    FDQuery.SQL.Text := 'SELECT MAX(ClientID) AS MaxID FROM TClients';
+    FDQuery.Open;
+
+    Result := FDQuery.FieldByName('MaxID').AsInteger + 1;
+  finally
+    FDQuery.Free;
+  end;
+end;
+
+procedure TfmClients_OP.NumTelephoneExit(Sender: TObject);
+begin
+  // تحقق من صحة رقم الهاتف
+  if not TRegEx.IsMatch(NumTelephone.Text, '^\d{10}$') then
+  begin
+    ShowMessage('رقم الهاتف يجب أن يتكون من 10 أرقام.');
+    NumTelephone.SetFocus;
+  end;
+end;
+
+
+procedure TfmClients_OP.spExitClick(Sender: TObject);
+begin
+Close;
+end;
+
+end.

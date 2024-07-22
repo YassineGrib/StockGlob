@@ -1,4 +1,4 @@
-unit unHome;
+﻿unit unHome;
 
 interface
 
@@ -49,8 +49,11 @@ type
     procedure SbClientClick(Sender: TObject);
     procedure SpeedButton5Click(Sender: TObject);
     procedure SpeedButton2Click(Sender: TObject);
+    procedure FormShow(Sender: TObject);
+    procedure ConnectIfNotIdentified;
   private
     { Private declarations }
+
   public
     { Public declarations }
   end;
@@ -62,7 +65,12 @@ implementation
 
 {$R *.dfm}
 
-uses DmData, UnClients, UnSuppliers, UnProduits;
+uses DmData, UnClients, UnSuppliers, UnProduits, UnAuthentification;
+
+procedure TfmHome.FormShow(Sender: TObject);
+begin
+ConnectIfNotIdentified ;
+end;
 
 procedure TfmHome.SbClientClick(Sender: TObject);
 begin
@@ -83,5 +91,31 @@ procedure TfmHome.spExitClick(Sender: TObject);
 begin
 Close;
 end;
+
+
+
+procedure TfmHome.ConnectIfNotIdentified;
+begin
+  // التحقق من حالة التعريف، إذا لم يكن المستخدم معرفاً، يتم عرض نموذج المصادقة
+  if not DataM.Identification then
+  begin
+    // إنشاء نموذج المصادقة
+    fmAuthentification := tfmAuthentification.Create(Application);
+    try
+      // عرض نموذج المصادقة كنافذة حوارية
+      fmAuthentification.ShowModal;
+
+      // إذا لم يتم تعريف المستخدم بعد عرض نموذج المصادقة، يتم إنهاء التطبيق
+      if not DataM.Identification then
+        application.Terminate;
+    finally
+      // تحرير نموذج المصادقة بعد الانتهاء
+      fmAuthentification.Free;
+    end;
+  end;
+end;
+
+
+
 
 end.

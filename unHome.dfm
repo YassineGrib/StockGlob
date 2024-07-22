@@ -13,6 +13,7 @@ object fmHome: TfmHome
   Position = poDesktopCenter
   Scaled = False
   StyleElements = [seFont, seBorder]
+  OnShow = FormShow
   TextHeight = 24
   object SpeedButton2: TSpeedButton
     Left = 436
@@ -85,7 +86,7 @@ object fmHome: TfmHome
     Images = DataM.iLNavigation_100
   end
   object SpeedButton10: TSpeedButton
-    Left = 436
+    Left = 612
     Top = 509
     Width = 150
     Height = 150
@@ -121,7 +122,7 @@ object fmHome: TfmHome
     Images = DataM.iLNavigation_100
   end
   object SpeedButton4: TSpeedButton
-    Left = 612
+    Left = 436
     Top = 509
     Width = 150
     Height = 150
@@ -129,7 +130,7 @@ object fmHome: TfmHome
     Margins.Top = 4
     Margins.Right = 4
     Margins.Bottom = 4
-    ImageIndex = 18
+    ImageIndex = 22
     Images = DataM.iLNavigation_100
   end
   object SpeedButton5: TSpeedButton
@@ -356,7 +357,7 @@ object fmHome: TfmHome
     ParentFont = False
   end
   object Label12: TLabel
-    Left = 470
+    Left = 646
     Top = 663
     Width = 97
     Height = 25
@@ -374,16 +375,16 @@ object fmHome: TfmHome
     ParentFont = False
   end
   object Label13: TLabel
-    Left = 670
+    Left = 474
     Top = 663
-    Width = 48
+    Width = 71
     Height = 25
     Margins.Left = 6
     Margins.Top = 6
     Margins.Right = 6
     Margins.Bottom = 10
     Alignment = taCenter
-    Caption = 'Alerts'
+    Caption = 'Journale'
     Font.Charset = ANSI_CHARSET
     Font.Color = clWindowText
     Font.Height = -21
