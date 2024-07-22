@@ -10,7 +10,8 @@ uses
   UnProduits in 'UnProduits.pas' {FmProduits},
   UnCategories in 'UnCategories.pas' {FmCategories},
   UnMarques in 'UnMarques.pas' {FMmarques},
-  UnClients_OP in 'UnClients_OP.pas' {fmClients_OP};
+  UnClients_OP in 'UnClients_OP.pas' {fmClients_OP},
+  UnJournale in 'UnJournale.pas' {FmJournale};
 
 {$R *.res}
 
@@ -18,6 +19,7 @@ begin
   Application.Initialize;
   Application.MainFormOnTaskbar := True;
   Application.CreateForm(TfmHome, fmHome);
+  Application.CreateForm(TFmJournale, FmJournale);
   Application.CreateForm(TfmClients_OP, fmClients_OP);
   Application.CreateForm(TfmAuthentification, fmAuthentification);
   Application.CreateForm(TFmProduits, FmProduits);

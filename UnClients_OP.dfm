@@ -245,8 +245,8 @@ object fmClients_OP: TfmClients_OP
   object Label1: TLabel
     Left = 29
     Top = 162
-    Width = 83
-    Height = 28
+    Width = 67
+    Height = 22
     Margins.Left = 5
     Margins.Top = 5
     Margins.Right = 5
@@ -256,8 +256,8 @@ object fmClients_OP: TfmClients_OP
   object Label2: TLabel
     Left = 29
     Top = 227
-    Width = 107
-    Height = 27
+    Width = 86
+    Height = 22
     Margins.Left = 5
     Margins.Top = 5
     Margins.Right = 5
@@ -267,8 +267,8 @@ object fmClients_OP: TfmClients_OP
   object Label4: TLabel
     Left = 389
     Top = 227
-    Width = 58
-    Height = 27
+    Width = 47
+    Height = 22
     Margins.Left = 5
     Margins.Top = 5
     Margins.Right = 5
@@ -278,8 +278,8 @@ object fmClients_OP: TfmClients_OP
   object Label5: TLabel
     Left = 29
     Top = 291
-    Width = 148
-    Height = 27
+    Width = 119
+    Height = 22
     Margins.Left = 5
     Margins.Top = 5
     Margins.Right = 5
@@ -289,8 +289,8 @@ object fmClients_OP: TfmClients_OP
   object Label6: TLabel
     Left = 389
     Top = 291
-    Width = 62
-    Height = 27
+    Width = 50
+    Height = 22
     Margins.Left = 5
     Margins.Top = 5
     Margins.Right = 5
@@ -422,7 +422,7 @@ object fmClients_OP: TfmClients_OP
       ExplicitTop = 4
       ExplicitHeight = 40
     end
-    object Exporter: TSpeedButton
+    object Initialiser: TSpeedButton
       AlignWithMargins = True
       Left = 146
       Top = 3
@@ -434,6 +434,7 @@ object fmClients_OP: TfmClients_OP
       ImageIndex = 14
       Images = DataM.ilNavigation
       Flat = True
+      OnClick = InitialiserClick
       ExplicitLeft = 552
       ExplicitTop = 4
       ExplicitHeight = 40

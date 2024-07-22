@@ -18,7 +18,7 @@ type
     Titel: TLabel;
     ToolsPanel: TPanel;
     Valider: TSpeedButton;
-    Exporter: TSpeedButton;
+    Initialiser: TSpeedButton;
     ClientID: TEdit;
     Label1: TLabel;
     Statut: TComboBox;
@@ -36,6 +36,8 @@ type
     procedure FormShow(Sender: TObject);
     procedure ValiderClick(Sender: TObject);
     procedure FormKeyPress(Sender: TObject; var Key: Char);
+    procedure Consulter;
+    procedure InitialiserClick(Sender: TObject);
 
 
   private
@@ -53,7 +55,7 @@ implementation
 
 {$R *.dfm}
 
-uses DmData;
+uses DmData, UnClients;
 
 
 
@@ -62,19 +64,14 @@ uses DmData;
 
 procedure TfmClients_OP.ValiderClick(Sender: TObject);
 var
-  FDQueryCheckExists, FDQueryInsert: TFDQuery;
+  FDQueryUpdate, FDQueryCheckExists, FDQueryInsert: TFDQuery;
 begin
-
-  DataM.OP := 'Ajouter';
-  if DataM.OP = 'Ajouter' then
-  begin
     // Vérifiez que tous les champs obligatoires sont remplis
     if (NomClient.Text = '') or (NumTelephone.Text = '') then
     begin
       ShowMessage('Le nom et le numéro de téléphone sont des champs obligatoires.');
       Exit;
     end;
-
     // Vérifiez la validité de l'adresse e-mail si elle est entrée
     if (Email.Text <> '') and not TRegEx.IsMatch(Email.Text, '^[\w\.-]+@[\w\.-]+\.\w+$') then
     begin
@@ -82,7 +79,6 @@ begin
       Email.SetFocus;
       Exit;
     end;
-
     // Vérifiez la validité du numéro de téléphone
     if not TRegEx.IsMatch(NumTelephone.Text, '^\d{10}$') then
     begin
@@ -91,7 +87,8 @@ begin
       Exit;
     end;
 
-
+    if DataM.OP = 'Ajouter' then
+    begin
        // تحقق من عدم وجود العميل بالفعل بناءً على رقم الهاتف
     FDQueryCheckExists := TFDQuery.Create(nil);
     try
@@ -107,14 +104,12 @@ begin
     finally
       FDQueryCheckExists.Free;
     end;
-
     // إذا كانت جميع التحققات ناجحة، أدخل البيانات في جدول العملاء
     FDQueryInsert := TFDQuery.Create(nil);
     try
       FDQueryInsert.Connection := DataM.FDConnection;
       FDQueryInsert.SQL.Text := 'INSERT INTO TClients (NomClient, Adresse, NumTelephone, Email, Statut, UtilisateurID) ' +
                                 'VALUES (:NomClient, :Adresse, :NumTelephone, :Email, :Statut, :UtilisateurID)';
-
       FDQueryInsert.ParamByName('NomClient').AsString := NomClient.Text;
       FDQueryInsert.ParamByName('Adresse').AsString := Adresse.Text;
       FDQueryInsert.ParamByName('NumTelephone').AsString := NumTelephone.Text;
@@ -123,12 +118,41 @@ begin
       FDQueryInsert.ParamByName('UtilisateurID').Asinteger := DataM.Utilisateur; // التأكد من تحديد الاتصال المناسب
       FDQueryInsert.ExecSQL;
       ShowMessage('تم إضافة العميل بنجاح.');
+      InitialiserClick(Sender);
+
     finally
       FDQueryInsert.Free;
     end;
   end;
-end;
 
+  IF datam.Operation = 'Modifier' then
+    begin
+      FDQueryUpdate := TFDQuery.Create(nil);
+      try
+        FDQueryUpdate.Connection := DataM.FDConnection;
+
+        FDQueryUpdate.SQL.Text := 'UPDATE TClients SET NomClient = :NomClient, Adresse = :Adresse, NumTelephone = :NumTelephone, Email = :Email, Statut = :Statut ' +
+                                  'WHERE ClientID = :ClientID';
+
+        FDQueryUpdate.ParamByName('NomClient').AsString := NomClient.Text;
+        FDQueryUpdate.ParamByName('Adresse').AsString := Adresse.Text;
+        FDQueryUpdate.ParamByName('NumTelephone').AsString := NumTelephone.Text;
+        FDQueryUpdate.ParamByName('Email').AsString := Email.Text;
+        FDQueryUpdate.ParamByName('Statut').AsString := Statut.Text;
+        FDQueryUpdate.ParamByName('ClientID').AsInteger := StrToInt(ClientID.Text);
+
+        FDQueryUpdate.ExecSQL;
+        ShowMessage('Les données ont été mises à jour avec succès.');
+
+        fmClients.fillDBGrid;
+        Self.Close;
+
+      finally
+        FDQueryUpdate.Free;
+      end;
+
+    end;
+end;
 
 procedure TfmClients_OP.FormKeyPress(Sender: TObject; var Key: Char);
 begin
@@ -138,8 +162,46 @@ end;
 
 procedure TfmClients_OP.FormShow(Sender: TObject);
 begin
-ClientID.Text := Format('CLT%04d', [GetMaxClientID]);
+  if Datam.Operation = 'Modifier' then
+    begin
+      // تعطيل حقل ID عند التعديل
+      ClientID.Enabled := false;
+      Consulter;
+    end;
+
+  if DataM.Operation = 'Consulter' then
+    begin
+      // تعطيل الأزرار عند الاستشارة فقط
+      Valider.Enabled := False;
+      Initialiser.Enabled := False;
+      Consulter;
+    end;
+
+
+  if DataM.Operation = 'Ajouter' then
+  begin
+   ClientID.Text := Format('CLT%04d', [GetMaxClientID]);
+  end;
+
+  // تعيين عنوان النموذج بناءً على العملية الحالية
+  Titel.caption := 'G-Stock | Gestion Des Clients | ' + DataM.Operation;
+
 end;
+
+
+
+procedure TfmClients_OP.Consulter;
+begin
+  // ملء الحقول ببيانات الموظف المحددة من قاعدة البيانات
+  ClientID.Text     := fmClients.FDQFillDbGrid.FieldByName('ClientID').AsString;
+  NomClient.Text    := fmClients.FDQFillDbGrid.FieldByName('NomClient').AsString;
+  Adresse.Text      := fmClients.FDQFillDbGrid.FieldByName('Adresse').AsString;
+  NumTelephone.Text := fmClients.FDQFillDbGrid.FieldByName('NumTelephone').AsString;
+  Email.Text        := fmClients.FDQFillDbGrid.FieldByName('Email').AsString;
+  Statut.Text       := fmClients.FDQFillDbGrid.FieldByName('Statut').AsString;
+
+end;
+
 
 Function TfmClients_OP.GetMaxClientID: Integer;
 var
@@ -150,11 +212,20 @@ begin
     FDQuery.Connection := DataM.FDConnection;
     FDQuery.SQL.Text := 'SELECT MAX(ClientID) AS MaxID FROM TClients';
     FDQuery.Open;
-
     Result := FDQuery.FieldByName('MaxID').AsInteger + 1;
   finally
     FDQuery.Free;
   end;
+end;
+
+procedure TfmClients_OP.InitialiserClick(Sender: TObject);
+begin
+  //ClientID.Text     := fmClients.FDQFillDbGrid.FieldByName('ClientID').AsString;
+  NomClient.Clear ;
+  Adresse.Clear   ;
+  NumTelephone.Clear;
+  Email.Clear       ;
+  Statut.ItemIndex := 0 ;
 end;
 
 procedure TfmClients_OP.spExitClick(Sender: TObject);

@@ -468,6 +468,7 @@ object fmAuthentification: TfmAuthentification
     ParentFont = False
     PasswordChar = '*'
     TabOrder = 2
+    Text = 'Admin'
   end
   object CheckBox1: TCheckBox
     Left = 76

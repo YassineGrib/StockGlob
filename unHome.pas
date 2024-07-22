@@ -51,6 +51,7 @@ type
     procedure SpeedButton2Click(Sender: TObject);
     procedure FormShow(Sender: TObject);
     procedure ConnectIfNotIdentified;
+    procedure SpeedButton4Click(Sender: TObject);
   private
     { Private declarations }
 
@@ -65,7 +66,8 @@ implementation
 
 {$R *.dfm}
 
-uses DmData, UnClients, UnSuppliers, UnProduits, UnAuthentification;
+uses DmData, UnClients, UnSuppliers, UnProduits, UnAuthentification,
+  UnCategories, UnClients_OP, UnJournale, UnMarques;
 
 procedure TfmHome.FormShow(Sender: TObject);
 begin
@@ -80,6 +82,11 @@ end;
 procedure TfmHome.SpeedButton2Click(Sender: TObject);
 begin
 FmProduits.ShowModal();
+end;
+
+procedure TfmHome.SpeedButton4Click(Sender: TObject);
+begin
+fmjournale.ShowModal();
 end;
 
 procedure TfmHome.SpeedButton5Click(Sender: TObject);

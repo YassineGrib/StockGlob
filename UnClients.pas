@@ -33,13 +33,20 @@ type
     procedure edFilterChange(Sender: TObject);
     procedure AjouterClick(Sender: TObject);
     procedure CheckUserPermissions;
+    procedure ExporterClick(Sender: TObject);
+    procedure SupprimerClick(Sender: TObject);
+    procedure ConsulterClick(Sender: TObject);
+    procedure ModifierClick(Sender: TObject);
+
   private
     { Private declarations }
-        FDQFillDbGrid: TFDQuery;
-        DsFillDbGrid: TDataSource;
+
   public
+    FDQFillDbGrid: TFDQuery;
+    DsFillDbGrid: TDataSource;
     { Public declarations }
     procedure FillDBGrid(const SQLFilter: string = '');
+
 
   end;
 
@@ -57,6 +64,18 @@ begin
   // عند عرض نموذج الموظف، يتم ملء شبكة البيانات
   FillDBGrid;
   CheckUserPermissions;
+
+
+
+
+end;
+
+procedure TfmClients.ModifierClick(Sender: TObject);
+begin
+  DataM.Operation := 'Modifier';
+  fmClients_OP := TfmClients_OP.Create(Self);
+  fmClients_OP.ShowModal;
+  fmClients_OP.free;
 end;
 
 procedure TfmClients.CheckUserPermissions;
@@ -72,15 +91,40 @@ begin
 end;
 
 
+procedure TfmClients.ConsulterClick(Sender: TObject);
+begin
+  DataM.Operation := 'Consulter';
+  fmClients_OP := TfmClients_OP.Create(Self);
+  fmClients_OP.ShowModal;
+  fmClients_OP.free;
+
+end;
+
 procedure TfmClients.AjouterClick(Sender: TObject);
 begin
-fmClients_OP.ShowModal;
+DataM.Operation := 'Ajouter';
+  fmClients_OP := TfmClients_OP.Create(Self);
+  fmClients_OP.ShowModal;
+  fmClients_OP.free;
 end;
 
 procedure TfmClients.edFilterChange(Sender: TObject);
 begin
  // عند تغيير محتوى مربع النص الخاص بالبحث، يتم تحديث شبكة البيانات وفقًا لمرشح البحث
   FillDBGrid(' WHERE NomClient LIKE :NomClient OR NumTelephone LIKE :NumTelephone');
+end;
+
+procedure TfmClients.ExporterClick(Sender: TObject);
+const
+  Title = 'LISTE DES CLIENTS'; // يمكنك تغيير العنوان بما يناسبك
+begin
+if fmClients.FDQFillDbGrid.IsEmpty
+then begin
+          ShowMessage('Impossible d''exporter à partir d''une liste vide !');
+          Exit;
+     end;
+
+DataM.ExportToExcel(DBGrid, Title);
 end;
 
 procedure TfmClients.FillDBGrid(const SQLFilter: string = '');
@@ -135,4 +179,36 @@ begin
 Close;
 end;
 
+procedure TfmClients.SupprimerClick(Sender: TObject);
+var
+  Confirmation: Integer;
+  FDQueryDelete: TFDQuery;
+begin
+  // التحقق من وجود بيانات في الشبكة ومعرف الطبيب غير فارغ
+  if Assigned(FDQFillDbGrid) and (FDQFillDbGrid.FieldByName('ClientID') <> nil) and
+    not fmClients.FDQFillDbGrid.FieldByName('ClientID').IsNull then
+  begin
+    // حفظ معرف السجل قبل الحذف
+    DataM.RecordID := FDQFillDbGrid.FieldByName('ClientID').AsString;
+    // طلب تأكيد قبل الحذف
+    Confirmation := MessageDlg('Êtes-vous sûr de vouloir supprimer cet enregistrement ?', mtConfirmation, [mbYes, mbNo], 0);
+    if Confirmation = mrYes then
+    begin
+      // إنشاء استعلام للحذف
+      FDQueryDelete := TFDQuery.Create(nil);
+      try
+        FDQueryDelete.Connection := DataM.FDConnection; // على افتراض أن DataM هو وحدة البيانات الخاصة بك
+        FDQueryDelete.SQL.Text := 'DELETE FROM TClients WHERE ClientID = :ClientID';
+        FDQueryDelete.ParamByName('ClientID').AsString := DataM.RecordID;
+        FDQueryDelete.ExecSQL;
+        // عرض رسالة بعد الحذف بنجاح
+        ShowMessage('Enregistrement supprimé avec succès.');
+        // تحديث الشبكة أو تنفيذ أي إجراءات ضرورية أخرى
+        FillDBGrid;
+      finally
+        FDQueryDelete.Free;
+      end;
+    end;
+  end;
+end;
 end.

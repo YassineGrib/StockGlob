@@ -137,6 +137,10 @@
             <Form>fmClients_OP</Form>
             <FormType>dfm</FormType>
         </DCCReference>
+        <DCCReference Include="UnJournale.pas">
+            <Form>FmJournale</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
         <BuildConfiguration Include="Base">
             <Key>Base</Key>
         </BuildConfiguration>

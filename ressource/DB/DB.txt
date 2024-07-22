@@ -87,7 +87,7 @@ CREATE TABLE TProduits (
 );
 GO
 CREATE TABLE TJournalDeModifications (
-    LogID INT IDENTITY(1,1) PRIMARY KEY,
+    JournaleID INT IDENTITY(1,1) PRIMARY KEY,
     NomTable NVARCHAR(100),
     TypeOperation NVARCHAR(10),
     IDEnregistrement INT,

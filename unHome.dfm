@@ -132,6 +132,7 @@ object fmHome: TfmHome
     Margins.Bottom = 4
     ImageIndex = 22
     Images = DataM.iLNavigation_100
+    OnClick = SpeedButton4Click
   end
   object SpeedButton5: TSpeedButton
     Left = 260
