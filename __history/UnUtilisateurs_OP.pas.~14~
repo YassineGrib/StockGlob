@@ -1,0 +1,161 @@
+﻿unit UnUtilisateurs_OP;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, Vcl.Buttons, Vcl.ExtCtrls,
+  Vcl.Imaging.pngimage, Vcl.WinXCtrls, FireDAC.Stan.Intf, FireDAC.Stan.Option,
+  FireDAC.Stan.Param, FireDAC.Stan.Error, FireDAC.DatS, FireDAC.Phys.Intf,
+  FireDAC.DApt.Intf, FireDAC.Stan.Async, FireDAC.DApt, Data.DB,
+  FireDAC.Comp.DataSet, FireDAC.Comp.Client;
+
+type
+  TfmUtilisateurs_OP = class(TForm)
+    Image2: TImage;
+    Label1: TLabel;
+    Label2: TLabel;
+    Label4: TLabel;
+    Label5: TLabel;
+    Label6: TLabel;
+    Label7: TLabel;
+    TitelPanel: TPanel;
+    spExit: TSpeedButton;
+    spLogo: TSpeedButton;
+    Titel: TLabel;
+    ToolsPanel: TPanel;
+    Valider: TSpeedButton;
+    Initialiser: TSpeedButton;
+    UtilisateurID: TEdit;
+    Email: TEdit;
+    NomUtilisateur: TEdit;
+    MotDePasse: TEdit;
+    Statut: TComboBox;
+    Ajouter: TToggleSwitch;
+    Modifier: TToggleSwitch;
+    Supprimier: TToggleSwitch;
+    Venter: TToggleSwitch;
+    Label3: TLabel;
+    Label8: TLabel;
+    Label9: TLabel;
+    Label10: TLabel;
+    FDQuery1: TFDQuery;
+    procedure spExitClick(Sender: TObject);
+    procedure ValiderClick(Sender: TObject);
+   // Function GetMaxID: Integer;
+    function GetLastInsertedID: Integer;
+    procedure FormShow(Sender: TObject);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  fmUtilisateurs_OP: TfmUtilisateurs_OP;
+
+implementation
+
+{$R *.dfm}
+
+uses DmData;
+
+procedure TfmUtilisateurs_OP.spExitClick(Sender: TObject);
+begin
+Close;
+end;
+
+procedure TfmUtilisateurs_OP.FormShow(Sender: TObject);
+begin
+
+   DataM.Operation := 'Ajouter'     ;
+
+ if DataM.Operation = 'Ajouter' then
+  begin
+   UtilisateurID.Text := Format('UTL%04d', [GetLastInsertedID]);
+  end;
+end;
+
+function TfmUtilisateurs_OP.GetLastInsertedID: Integer;
+var
+  FDQuery: TFDQuery;
+begin
+  FDQuery := TFDQuery.Create(nil);
+  try
+    FDQuery.Connection := DataM.FDConnection;
+    FDQuery.SQL.Text := 'SELECT SCOPE_IDENTITY() AS LastID';
+    FDQuery.Open;
+    Result := FDQuery.FieldByName('LastID').AsInteger;
+  finally
+    FDQuery.Free;
+  end;
+end;
+
+procedure TfmUtilisateurs_OP.ValiderClick(Sender: TObject);
+var
+  FDQueryInsert: TFDQuery;
+  newUserID: Integer;
+begin
+  // التحقق من ملء جميع الحقول المطلوبة
+  if (NomUtilisateur.Text = '') or (MotDePasse.Text = '') or (Statut.Text = '') then
+  begin
+    ShowMessage('Veuillez remplir tous les champs obligatoires.');
+    Exit;
+  end;
+
+  // إنشاء استعلام جديد لإدخال بيانات المستخدم
+  FDQueryInsert := TFDQuery.Create(Self);
+  try
+    // تعيين اتصال قاعدة البيانات للاستعلام
+    FDQueryInsert.Connection := DataM.FDConnection;
+
+    // إعداد نص الاستعلام لإدخال بيانات المستخدم
+    FDQueryInsert.SQL.Text :=
+      'INSERT INTO TUtilisateurs (NomUtilisateur, MotDePasse, Email, Statut) '+
+      'VALUES (:NomUtilisateur, :MotDePasse, :Email, :Statut)';
+
+    // تعيين القيم للمعلمات في الاستعلام
+    FDQueryInsert.ParamByName('NomUtilisateur').AsString := NomUtilisateur.Text;
+    FDQueryInsert.ParamByName('MotDePasse').AsString := MotDePasse.Text;
+    FDQueryInsert.ParamByName('Email').AsString := Email.Text;
+    FDQueryInsert.ParamByName('Statut').AsString := Statut.Text;
+
+    // تنفيذ الاستعلام
+    FDQueryInsert.ExecSQL;
+
+    // الحصول على ID المستخدم الجديد
+    newUserID := GetLastInsertedID;
+
+    // إدخال صلاحيات المستخدم الجديد في جدول TPermissions
+    FDQueryInsert.SQL.Text :=
+      'INSERT INTO TPermissions (UtilisateurID, PeutAjouter, PeutModifier, PeutSupprimer, PeutVendre, EstAdmin) ' +
+      'VALUES (:UtilisateurID, :PeutAjouter, :PeutModifier, :PeutSupprimer, :PeutVendre, :EstAdmin)';
+
+    // تعيين القيم للمعلمات في الاستعلام
+    FDQueryInsert.ParamByName('UtilisateurID').AsInteger := newUserID;
+    FDQueryInsert.ParamByName('PeutAjouter').AsBoolean := (Ajouter.State = tssOn);
+    FDQueryInsert.ParamByName('PeutModifier').AsBoolean := (Modifier.State = tssOn);
+    FDQueryInsert.ParamByName('PeutSupprimer').AsBoolean := (Supprimier.State = tssOn);
+    FDQueryInsert.ParamByName('PeutVendre').AsBoolean := (Venter.State = tssOn);
+    FDQueryInsert.ParamByName('EstAdmin').AsBoolean := (Statut.Text = 'admin');
+
+    // تنفيذ الاستعلام
+    FDQueryInsert.ExecSQL;
+
+    // إظهار رسالة نجاح
+    ShowMessage('Utilisateur ajouté avec succès.');
+
+  except
+    on E: Exception do
+    begin
+      // التعامل مع أي أخطاء قد تحدث
+      ShowMessage('Erreur lors de l''ajout de l''utilisateur: ' + E.Message);
+    end;
+  finally
+    // تحرير الاستعلام بعد الانتهاء
+    FDQueryInsert.Free;
+  end;
+end;
+
+
+end.

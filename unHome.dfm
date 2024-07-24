@@ -61,7 +61,7 @@ object fmHome: TfmHome
     ImageIndex = 13
     Images = DataM.iLNavigation_100
   end
-  object SpeedButton8: TSpeedButton
+  object sbVente: TSpeedButton
     Left = 84
     Top = 509
     Width = 150
@@ -97,7 +97,7 @@ object fmHome: TfmHome
     ImageIndex = 11
     Images = DataM.iLNavigation_100
   end
-  object SpeedButton6: TSpeedButton
+  object sbBDD: TSpeedButton
     Left = 795
     Top = 509
     Width = 150
@@ -322,16 +322,16 @@ object fmHome: TfmHome
     ParentFont = False
   end
   object Label10: TLabel
-    Left = 110
+    Left = 134
     Top = 663
-    Width = 93
+    Width = 48
     Height = 25
     Margins.Left = 6
     Margins.Top = 6
     Margins.Right = 6
     Margins.Bottom = 10
     Alignment = taCenter
-    Caption = 'Facturation'
+    Caption = 'Vente'
     Font.Charset = ANSI_CHARSET
     Font.Color = clWindowText
     Font.Height = -21
@@ -746,7 +746,7 @@ object fmHome: TfmHome
       ExplicitLeft = 51
       ExplicitHeight = 38
     end
-    object SpeedButton12: TSpeedButton
+    object sbUtilisateurs: TSpeedButton
       AlignWithMargins = True
       Left = 58
       Top = 0
@@ -759,6 +759,7 @@ object fmHome: TfmHome
       ImageIndex = 0
       Images = DataM.iLNavigation_48
       Flat = True
+      OnClick = sbUtilisateursClick
       ExplicitLeft = 104
       ExplicitTop = 5
     end
@@ -775,6 +776,7 @@ object fmHome: TfmHome
       ImageIndex = 2
       Images = DataM.iLNavigation_48
       Flat = True
+      OnClick = SpeedButton13Click
       ExplicitLeft = 81
       ExplicitTop = 5
       ExplicitHeight = 38
@@ -792,6 +794,7 @@ object fmHome: TfmHome
       ImageIndex = 1
       Images = DataM.iLNavigation_48
       Flat = True
+      OnClick = SpeedButton14Click
       ExplicitLeft = 151
       ExplicitTop = 5
       ExplicitHeight = 38

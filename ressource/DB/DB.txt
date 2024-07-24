@@ -8,7 +8,7 @@ GO
 
 -- Création de la table des utilisateurs
 CREATE TABLE TUtilisateurs (
-    UtilisateurID INT IDENTITY(1,1) PRIMARY KEY,
+    UtilisateurID INT  PRIMARY KEY,
     NomUtilisateur NVARCHAR(50) NOT NULL,
     MotDePasse NVARCHAR(50) NOT NULL,
     Email NVARCHAR(50),
@@ -19,7 +19,7 @@ GO
 -- Création de la table des permissions
 CREATE TABLE TPermissions (
     PermissionID INT IDENTITY(1,1) PRIMARY KEY,
-    UtilisateurID INT,
+    UtilisateurID INT ,
     PeutAjouter BIT,
     PeutModifier BIT,
     PeutSupprimer BIT,

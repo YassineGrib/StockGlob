@@ -11,7 +11,9 @@ uses
   UnCategories in 'UnCategories.pas' {FmCategories},
   UnMarques in 'UnMarques.pas' {FMmarques},
   UnClients_OP in 'UnClients_OP.pas' {fmClients_OP},
-  UnJournale in 'UnJournale.pas' {FmJournale};
+  UnJournale in 'UnJournale.pas' {FmJournale},
+  UnUtilisateurs in 'UnUtilisateurs.pas' {FmUtilisateurs},
+  UnUtilisateurs_OP in 'UnUtilisateurs_OP.pas' {fmUtilisateurs_OP};
 
 {$R *.res}
 
@@ -19,8 +21,10 @@ begin
   Application.Initialize;
   Application.MainFormOnTaskbar := True;
   Application.CreateForm(TfmHome, fmHome);
-  Application.CreateForm(TFmJournale, FmJournale);
   Application.CreateForm(TfmClients_OP, fmClients_OP);
+  Application.CreateForm(TfmUtilisateurs_OP, fmUtilisateurs_OP);
+  Application.CreateForm(TFmUtilisateurs, FmUtilisateurs);
+  Application.CreateForm(TFmJournale, FmJournale);
   Application.CreateForm(TfmAuthentification, fmAuthentification);
   Application.CreateForm(TFmProduits, FmProduits);
   Application.CreateForm(TFMmarques, FMmarques);

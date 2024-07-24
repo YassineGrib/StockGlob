@@ -108,6 +108,7 @@ DataM.Operation := 'Ajouter';
   fmClients_OP.free;
 end;
 
+
 procedure TfmClients.edFilterChange(Sender: TObject);
 begin
  // عند تغيير محتوى مربع النص الخاص بالبحث، يتم تحديث شبكة البيانات وفقًا لمرشح البحث
@@ -189,7 +190,7 @@ begin
     not fmClients.FDQFillDbGrid.FieldByName('ClientID').IsNull then
   begin
     // حفظ معرف السجل قبل الحذف
-    DataM.RecordID := FDQFillDbGrid.FieldByName('ClientID').AsString;
+    DataM.RecordID := FDQFillDbGrid.FieldByName('ClientID').AsInteger;
     // طلب تأكيد قبل الحذف
     Confirmation := MessageDlg('Êtes-vous sûr de vouloir supprimer cet enregistrement ?', mtConfirmation, [mbYes, mbNo], 0);
     if Confirmation = mrYes then
@@ -199,7 +200,7 @@ begin
       try
         FDQueryDelete.Connection := DataM.FDConnection; // على افتراض أن DataM هو وحدة البيانات الخاصة بك
         FDQueryDelete.SQL.Text := 'DELETE FROM TClients WHERE ClientID = :ClientID';
-        FDQueryDelete.ParamByName('ClientID').AsString := DataM.RecordID;
+        FDQueryDelete.ParamByName('ClientID').AsInteger := DataM.RecordID;
         FDQueryDelete.ExecSQL;
         // عرض رسالة بعد الحذف بنجاح
         ShowMessage('Enregistrement supprimé avec succès.');

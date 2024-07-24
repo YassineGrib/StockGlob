@@ -116,7 +116,9 @@ begin
       FDQueryInsert.ParamByName('Email').AsString := Email.Text;
       FDQueryInsert.ParamByName('Statut').AsString := Statut.Text;
       FDQueryInsert.ParamByName('UtilisateurID').Asinteger := DataM.Utilisateur; // التأكد من تحديد الاتصال المناسب
+
       FDQueryInsert.ExecSQL;
+
       ShowMessage('تم إضافة العميل بنجاح.');
       InitialiserClick(Sender);
 
@@ -133,7 +135,6 @@ begin
 
         FDQueryUpdate.SQL.Text := 'UPDATE TClients SET NomClient = :NomClient, Adresse = :Adresse, NumTelephone = :NumTelephone, Email = :Email, Statut = :Statut ' +
                                   'WHERE ClientID = :ClientID';
-
         FDQueryUpdate.ParamByName('NomClient').AsString := NomClient.Text;
         FDQueryUpdate.ParamByName('Adresse').AsString := Adresse.Text;
         FDQueryUpdate.ParamByName('NumTelephone').AsString := NumTelephone.Text;

@@ -3,13 +3,14 @@
 interface
 
 uses
-  System.SysUtils, System.Classes, System.ImageList, Vcl.ImgList, Vcl.Controls,
+  System.SysUtils, System.Classes, System.ImageList, Vcl.Forms, Vcl.ImgList, Vcl.Controls,
+  Vcl.VirtualImageList, Vcl.BaseImageCollection, Vcl.ImageCollection,
   FireDAC.Stan.Intf, FireDAC.Stan.Option, FireDAC.Stan.Error, FireDAC.UI.Intf,
   FireDAC.Phys.Intf, FireDAC.Stan.Def, FireDAC.Stan.Pool, FireDAC.Stan.Async,
   FireDAC.Phys, FireDAC.Phys.MSSQL, FireDAC.Phys.MSSQLDef, FireDAC.VCLUI.Wait,
-  Data.DB, FireDAC.Comp.Client, ComObj, Vcl.Graphics, Vcl.Dialogs, Vcl.StdCtrls,
-  Vcl.Buttons, Vcl.ExtCtrls, Vcl.Grids, Vcl.DBGrids, Winapi.Windows, Winapi.Messages,System.Variants ;
-
+  Data.DB, FireDAC.Comp.Client, ComObj, Winapi.Windows, Winapi.Messages,System.Variants,  Vcl.Graphics,
+  Vcl.Dialogs, Vcl.StdCtrls, Vcl.Buttons, Vcl.ExtCtrls,
+  Vcl.Grids, Vcl.DBGrids ;
 type
   TDataM = class(TDataModule)
     ilNavigation: TImageList;
@@ -18,26 +19,32 @@ type
     iLNavigation_84: TImageList;
     iLNavigation_64: TImageList;
     FDConnection: TFDConnection;
-    procedure DataModuleCreate(Sender: TObject);
+
     procedure ExportToExcel(DBGrid: TDBGrid; const Title: string);
+
   private
     { Private declarations }
     FCanAdd: Boolean;
     FCanEdit: Boolean;
     FCanDelete: Boolean;
+    FCanSell  : Boolean;
+    FAdmin  : Boolean;
+
   public
     { Public declarations }
     OP    : string;
     Utilisateur : integer;
     Identification : boolean;
     UtilisateurID  : integer;
-    RecordID : String;
+    RecordID : integer;
     Operation : String;
 
     procedure LoadUserPermissions(UserID: Integer);
     property CanAdd: Boolean read FCanAdd;
     property CanEdit: Boolean read FCanEdit;
     property CanDelete: Boolean read FCanDelete;
+    property CanSell: Boolean read FCanSell;
+    property Admin: Boolean read FAdmin;
 
   end;
 
@@ -49,12 +56,17 @@ implementation
 {%CLASSGROUP 'Vcl.Controls.TControl'}
 
 {$R *.dfm}
+/// Start
 
-procedure TDataM.DataModuleCreate(Sender: TObject);
-begin
-OP := 'OP';
-Utilisateur := 1 ;
-end;
+
+
+
+
+
+
+
+///// excel
+
 
 
 procedure TDataM.LoadUserPermissions(UserID: Integer);
@@ -64,20 +76,26 @@ begin
   FDQuery := TFDQuery.Create(nil);
   try
     FDQuery.Connection := FDConnection;
-    FDQuery.SQL.Text := 'SELECT PeutAjouter, PeutModifier, PeutSupprimer FROM TPermissions WHERE UtilisateurID = :UtilisateurID';
+    FDQuery.SQL.Text := 'SELECT * FROM TPermissions WHERE UtilisateurID = :UtilisateurID';
     FDQuery.ParamByName('UtilisateurID').AsInteger := UserID;
     FDQuery.Open;
+
     if not FDQuery.IsEmpty then
     begin
       FCanAdd := FDQuery.FieldByName('PeutAjouter').AsBoolean;
       FCanEdit := FDQuery.FieldByName('PeutModifier').AsBoolean;
       FCanDelete := FDQuery.FieldByName('PeutSupprimer').AsBoolean;
+      FCanSell := FDQuery.FieldByName('PeutVendre').AsBoolean;
+      FAdmin := FDQuery.FieldByName('EstAdmin').AsBoolean;
+
     end
     else
     begin
       FCanAdd := False;
       FCanEdit := False;
       FCanDelete := False;
+      FCanSell  := False;
+      FAdmin    := False;
     end;
   finally
     FDQuery.Free;

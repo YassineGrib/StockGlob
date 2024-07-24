@@ -49,9 +49,9 @@ uses DmData, unHome;
 
 procedure TfmAuthentification.FormShow(Sender: TObject);
 begin
-          // تعبئة قائمة المستخدمين عند عرض النموذج
-       FillcbUtilisateur;
-       cbutilisateur.ItemIndex := 0;
+// تعبئة قائمة المستخدمين عند عرض النموذج
+FillcbUtilisateur;
+cbutilisateur.ItemIndex := 0;
 end;
 
 procedure TfmAuthentification.Label5Click(Sender: TObject);
@@ -59,6 +59,7 @@ begin
 // رسالة تفيد بأنه يجب الاتصال بمدير قاعدة البيانات
 showmessage('Veuillez contacter votre administrateur de base de données !');
 end;
+
 
 procedure TfmAuthentification.SpeedButton1Click(Sender: TObject);
 var
@@ -86,14 +87,23 @@ begin
       // التحقق مما إذا كان الاستعلام قد أرجع نتائج
       if not qr_Authontification.IsEmpty then
       begin
-        DataM.Identification := True;
+        // التحقق من حالة المستخدم
+        if qr_Authontification.FieldByName('Statut').AsString = 'Actif' then
+        begin
+          DataM.Identification := True;
 
-        // تعيين بيانات المستخدم في الوحدة العامة
-        DataM.UtilisateurID := qr_Authontification.FieldByName('UtilisateurID').asInteger;
+          // تعيين بيانات المستخدم في الوحدة العامة
+          DataM.UtilisateurID := qr_Authontification.FieldByName('UtilisateurID').AsInteger;
 
-        // إغلاق النموذج الحالي بعد التحقق الناجح
-        FmHome.Label1.Caption := 'Bienvenue, ' + qr_Authontification.FieldByName('NomUtilisateur').asString;
-        Close;
+          // إغلاق النموذج الحالي بعد التحقق الناجح
+          FmHome.Label1.Caption := 'Bienvenue, ' + qr_Authontification.FieldByName('NomUtilisateur').AsString;
+          Close;
+        end
+        else
+        begin
+          // عرض رسالة خطأ إذا كان المستخدم غير مفعل
+          ShowMessage('Votre compte est désactivé. Veuillez contacter l''administrateur.');
+        end;
       end
       else
       begin
@@ -104,13 +114,14 @@ begin
     else
     begin
       // معالجة الحالة التي تكون فيها خانة اسم المستخدم أو كلمة المرور فارغة
-      ShowMessage('Veuillez entrer le mot de passe.');
+      ShowMessage('Veuillez entrer votre nom d''utilisateur et votre mot de passe.');
     end;
   finally
     // تحرير الاستعلام بعد الانتهاء
     qr_Authontification.Free;
   end;
 end;
+
 
 
 procedure TfmAuthentification.spExitClick(Sender: TObject);

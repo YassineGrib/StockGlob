@@ -1,0 +1,17 @@
+object FmUtilisateurs: TFmUtilisateurs
+  Left = 0
+  Top = 0
+  BorderStyle = bsNone
+  Caption = 'FmUtilisateurs'
+  ClientHeight = 465
+  ClientWidth = 996
+  Color = clWhite
+  Font.Charset = DEFAULT_CHARSET
+  Font.Color = clWindowText
+  Font.Height = -12
+  Font.Name = 'Segoe UI'
+  Font.Style = []
+  Position = poDesktopCenter
+  Scaled = False
+  TextHeight = 15
+end

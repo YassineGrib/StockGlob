@@ -141,6 +141,14 @@
             <Form>FmJournale</Form>
             <FormType>dfm</FormType>
         </DCCReference>
+        <DCCReference Include="UnUtilisateurs.pas">
+            <Form>FmUtilisateurs</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
+        <DCCReference Include="UnUtilisateurs_OP.pas">
+            <Form>fmUtilisateurs_OP</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
         <BuildConfiguration Include="Base">
             <Key>Base</Key>
         </BuildConfiguration>

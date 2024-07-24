@@ -5,7 +5,7 @@ interface
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, Vcl.Buttons, Vcl.ExtCtrls,
-  Vcl.Imaging.pngimage;
+  Vcl.Imaging.pngimage, ShellAPI;
 
 type
   TfmHome = class(TForm)
@@ -16,15 +16,15 @@ type
     logoPanel: TPanel;
     SpeedButton2: TSpeedButton;
     SpeedButton7: TSpeedButton;
-    SpeedButton8: TSpeedButton;
+    sbVente: TSpeedButton;
     SpeedButton9: TSpeedButton;
     SpeedButton10: TSpeedButton;
     SpeedButton11: TSpeedButton;
-    SpeedButton12: TSpeedButton;
+    sbUtilisateurs: TSpeedButton;
     SpeedButton13: TSpeedButton;
     SpeedButton14: TSpeedButton;
     ToolsPanel: TPanel;
-    SpeedButton6: TSpeedButton;
+    sbBDD: TSpeedButton;
     SpeedButton1: TSpeedButton;
     SpeedButton4: TSpeedButton;
     SpeedButton5: TSpeedButton;
@@ -52,6 +52,10 @@ type
     procedure FormShow(Sender: TObject);
     procedure ConnectIfNotIdentified;
     procedure SpeedButton4Click(Sender: TObject);
+    procedure sbUtilisateursClick(Sender: TObject);
+    procedure SpeedButton14Click(Sender: TObject);
+    procedure SpeedButton13Click(Sender: TObject);
+    procedure CheckUserPermissions;
   private
     { Private declarations }
 
@@ -67,16 +71,46 @@ implementation
 {$R *.dfm}
 
 uses DmData, UnClients, UnSuppliers, UnProduits, UnAuthentification,
-  UnCategories, UnClients_OP, UnJournale, UnMarques;
+  UnCategories, UnClients_OP, UnJournale, UnMarques, UnUtilisateurs;
 
 procedure TfmHome.FormShow(Sender: TObject);
 begin
 ConnectIfNotIdentified ;
+CheckUserPermissions;
+end;
+
+procedure Tfmhome.CheckUserPermissions;
+begin
+  // تحميل الصلاحيات من DataM إذا لم تكن قد تم تحميلها بالفعل
+  if not DataM.CanAdd and not DataM.CanEdit and not DataM.CanDelete and not DataM.Cansell and not DataM.admin then
+    DataM.LoadUserPermissions(DataM.UtilisateurID);
+
+  // تحديث حالة الأزرار بناءً على الصلاحيات المخزنة
+  sbUtilisateurs.Enabled := DataM.admin;
+   sbvente.Enabled := DataM.Cansell;
+   sbBDD.Enabled  := DataM.admin;
 end;
 
 procedure TfmHome.SbClientClick(Sender: TObject);
 begin
 fmClients.ShowModal;
+end;
+
+procedure TfmHome.sbUtilisateursClick(Sender: TObject);
+begin
+FmUtilisateurs.showmodal();
+end;
+
+procedure TfmHome.SpeedButton13Click(Sender: TObject);
+begin
+  // Use ShellExecute to open Notepad
+  ShellExecute(0, 'open', 'notepad.exe', nil, nil, SW_SHOWNORMAL);
+end;
+
+procedure TfmHome.SpeedButton14Click(Sender: TObject);
+begin
+  // Use ShellExecute to open the Windows Calculator
+  ShellExecute(0, 'open', 'calc.exe', nil, nil, SW_SHOWNORMAL);
 end;
 
 procedure TfmHome.SpeedButton2Click(Sender: TObject);
