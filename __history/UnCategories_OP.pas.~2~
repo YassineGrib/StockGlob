@@ -1,0 +1,24 @@
+unit UnCategories_OP;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs;
+
+type
+  TFmCategories_OP = class(TForm)
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  FmCategories_OP: TFmCategories_OP;
+
+implementation
+
+{$R *.dfm}
+
+end.

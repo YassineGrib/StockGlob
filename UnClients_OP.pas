@@ -87,7 +87,7 @@ begin
       Exit;
     end;
 
-    if DataM.OP = 'Ajouter' then
+    if DataM.Operation = 'Ajouter' then
     begin
        // تحقق من عدم وجود العميل بالفعل بناءً على رقم الهاتف
     FDQueryCheckExists := TFDQuery.Create(nil);
@@ -115,8 +115,7 @@ begin
       FDQueryInsert.ParamByName('NumTelephone').AsString := NumTelephone.Text;
       FDQueryInsert.ParamByName('Email').AsString := Email.Text;
       FDQueryInsert.ParamByName('Statut').AsString := Statut.Text;
-      FDQueryInsert.ParamByName('UtilisateurID').Asinteger := DataM.Utilisateur; // التأكد من تحديد الاتصال المناسب
-
+      FDQueryInsert.ParamByName('UtilisateurID').Asinteger := DataM.UtilisateurID;
       FDQueryInsert.ExecSQL;
 
       ShowMessage('تم إضافة العميل بنجاح.');

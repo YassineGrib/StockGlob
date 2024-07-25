@@ -12,6 +12,7 @@ object FMmarques: TFMmarques
   Font.Style = []
   Position = poDesktopCenter
   Scaled = False
+  OnShow = FormShow
   TextHeight = 22
   object TitelPanel: TPanel
     Left = 0
@@ -28,7 +29,6 @@ object FMmarques: TFMmarques
     ParentBackground = False
     TabOrder = 0
     StyleElements = []
-    ExplicitWidth = 1047
     object spExit: TSpeedButton
       AlignWithMargins = True
       Left = 644
@@ -108,9 +108,6 @@ object FMmarques: TFMmarques
     ParentBackground = False
     TabOrder = 1
     StyleElements = []
-    ExplicitLeft = 33
-    ExplicitTop = 60
-    ExplicitWidth = 708
     object Image1: TImage
       AlignWithMargins = True
       Left = 484
@@ -268,15 +265,16 @@ object FMmarques: TFMmarques
         Expanded = False
         FieldName = 'MarqueID'
         Title.Alignment = taCenter
-        Title.Caption = 'Categorie ID'
+        Title.Caption = 'Marque ID'
         Width = 200
         Visible = True
       end
       item
         Alignment = taCenter
         Expanded = False
-        FieldName = 'Marque'
+        FieldName = 'NomMarque'
         Title.Alignment = taCenter
+        Title.Caption = 'Nom Marque'
         Width = 460
         Visible = True
       end>
@@ -297,8 +295,6 @@ object FMmarques: TFMmarques
     ParentBackground = False
     TabOrder = 3
     StyleElements = [seFont, seBorder]
-    ExplicitTop = 210
-    ExplicitWidth = 774
     object Supprimer: TSpeedButton
       AlignWithMargins = True
       Left = 267
@@ -384,6 +380,7 @@ object FMmarques: TFMmarques
       Ctl3D = True
       ParentCtl3D = False
       TabOrder = 0
+      OnChange = edFilterChange
       ExplicitHeight = 30
     end
   end

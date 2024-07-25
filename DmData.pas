@@ -21,6 +21,8 @@ type
     FDConnection: TFDConnection;
 
     procedure ExportToExcel(DBGrid: TDBGrid; const Title: string);
+    procedure DataModuleCreate(Sender: TObject);
+
 
   private
     { Private declarations }
@@ -32,7 +34,7 @@ type
 
   public
     { Public declarations }
-    OP    : string;
+
     Utilisateur : integer;
     Identification : boolean;
     UtilisateurID  : integer;
@@ -55,19 +57,12 @@ implementation
 
 {%CLASSGROUP 'Vcl.Controls.TControl'}
 
+uses UnDB;
+
 {$R *.dfm}
 /// Start
 
-
-
-
-
-
-
-
 ///// excel
-
-
 
 procedure TDataM.LoadUserPermissions(UserID: Integer);
 var
@@ -103,6 +98,24 @@ begin
 end;
 
 
+
+procedure TDataM.DataModuleCreate(Sender: TObject);
+var
+  Query: TFDQuery;
+  DatabaseExists: Boolean;
+  BackupPath: string;
+begin
+  BackupPath := ExtractFilePath(ParamStr(0)) + 'Database\Stock.bak';
+  Query := TFDQuery.Create(nil);
+  try
+    FDconnection.ExecSQL('RESTORE DATABASE stock FROM DISK = :BackupPath WITH REPLACE',
+        [BackupPath]);
+      ShowMessage('Database "stock" has been restored from backup.');
+      dataM.FDConnection.Params.Values['database'] := 'stock';
+  finally
+    Query.Free;
+  end;
+end;
 
 procedure TDataM.ExportToExcel(DBGrid: TDBGrid; const Title: string);
 var

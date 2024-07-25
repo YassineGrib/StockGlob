@@ -54,6 +54,7 @@ FillcbUtilisateur;
 cbutilisateur.ItemIndex := 0;
 end;
 
+
 procedure TfmAuthentification.Label5Click(Sender: TObject);
 begin
 // رسالة تفيد بأنه يجب الاتصال بمدير قاعدة البيانات

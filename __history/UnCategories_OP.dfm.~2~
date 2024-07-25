@@ -1,0 +1,17 @@
+object FmCategories_OP: TFmCategories_OP
+  Left = 0
+  Top = 0
+  BorderStyle = bsNone
+  Caption = 'FmCategories_OP'
+  ClientHeight = 552
+  ClientWidth = 874
+  Color = clBtnFace
+  Font.Charset = ANSI_CHARSET
+  Font.Color = clWindowText
+  Font.Height = -18
+  Font.Name = 'Roboto Cn'
+  Font.Style = []
+  Position = poDesktopCenter
+  Scaled = False
+  TextHeight = 22
+end

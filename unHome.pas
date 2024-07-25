@@ -5,7 +5,10 @@ interface
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, Vcl.Buttons, Vcl.ExtCtrls,
-  Vcl.Imaging.pngimage, ShellAPI;
+  Vcl.Imaging.pngimage, ShellAPI, FireDAC.Stan.Intf, FireDAC.Stan.Option,
+  FireDAC.Stan.Param, FireDAC.Stan.Error, FireDAC.DatS, FireDAC.Phys.Intf,
+  FireDAC.DApt.Intf, FireDAC.Stan.Async, FireDAC.DApt, Data.DB,
+  FireDAC.Comp.DataSet, FireDAC.Comp.Client;
 
 type
   TfmHome = class(TForm)
@@ -56,6 +59,7 @@ type
     procedure SpeedButton14Click(Sender: TObject);
     procedure SpeedButton13Click(Sender: TObject);
     procedure CheckUserPermissions;
+   // procedure FormCreate(Sender: TObject);
   private
     { Private declarations }
 
@@ -72,6 +76,9 @@ implementation
 
 uses DmData, UnClients, UnSuppliers, UnProduits, UnAuthentification,
   UnCategories, UnClients_OP, UnJournale, UnMarques, UnUtilisateurs;
+
+
+
 
 procedure TfmHome.FormShow(Sender: TObject);
 begin

@@ -16,6 +16,7 @@ object FmCategories: TFmCategories
   Font.Style = []
   Position = poDesktopCenter
   Scaled = False
+  OnShow = FormShow
   TextHeight = 22
   object TitelPanel: TPanel
     Left = 0
@@ -32,7 +33,6 @@ object FmCategories: TFmCategories
     ParentBackground = False
     TabOrder = 0
     StyleElements = []
-    ExplicitWidth = 1047
     object spExit: TSpeedButton
       AlignWithMargins = True
       Left = 644
@@ -112,9 +112,6 @@ object FmCategories: TFmCategories
     ParentBackground = False
     TabOrder = 1
     StyleElements = []
-    ExplicitLeft = 33
-    ExplicitTop = 60
-    ExplicitWidth = 708
     object Image1: TImage
       AlignWithMargins = True
       Left = 484
@@ -360,8 +357,9 @@ object FmCategories: TFmCategories
       item
         Alignment = taCenter
         Expanded = False
-        FieldName = 'Categorie'
+        FieldName = 'NomCategorie'
         Title.Alignment = taCenter
+        Title.Caption = 'Nom Categorie'
         Width = 460
         Visible = True
       end>
@@ -382,8 +380,6 @@ object FmCategories: TFmCategories
     ParentBackground = False
     TabOrder = 3
     StyleElements = [seFont, seBorder]
-    ExplicitTop = 210
-    ExplicitWidth = 774
     object Supprimer: TSpeedButton
       AlignWithMargins = True
       Left = 267
@@ -469,7 +465,7 @@ object FmCategories: TFmCategories
       Ctl3D = True
       ParentCtl3D = False
       TabOrder = 0
-      ExplicitLeft = 542
+      OnChange = edFilterChange
       ExplicitHeight = 30
     end
   end
