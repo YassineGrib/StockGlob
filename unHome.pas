@@ -59,6 +59,7 @@ type
     procedure SpeedButton14Click(Sender: TObject);
     procedure SpeedButton13Click(Sender: TObject);
     procedure CheckUserPermissions;
+    procedure sbBDDClick(Sender: TObject);
    // procedure FormCreate(Sender: TObject);
   private
     { Private declarations }
@@ -75,7 +76,7 @@ implementation
 {$R *.dfm}
 
 uses DmData, UnClients, UnSuppliers, UnProduits, UnAuthentification,
-  UnCategories, UnClients_OP, UnJournale, UnMarques, UnUtilisateurs;
+  UnCategories, UnClients_OP, UnJournale, UnMarques, UnUtilisateurs, UnDB;
 
 
 
@@ -84,6 +85,11 @@ procedure TfmHome.FormShow(Sender: TObject);
 begin
 ConnectIfNotIdentified ;
 CheckUserPermissions;
+end;
+
+procedure TfmHome.sbBDDClick(Sender: TObject);
+begin
+fmDB.show;
 end;
 
 procedure Tfmhome.CheckUserPermissions;

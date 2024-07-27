@@ -22,8 +22,8 @@ uses
 begin
   Application.Initialize;
   Application.MainFormOnTaskbar := True;
-  Application.CreateForm(TfmDB, fmDB);
   Application.CreateForm(TfmHome, fmHome);
+  Application.CreateForm(TfmDB, fmDB);
   Application.CreateForm(TFmCategories_OP, FmCategories_OP);
   Application.CreateForm(TfmClients_OP, fmClients_OP);
   Application.CreateForm(TfmUtilisateurs_OP, fmUtilisateurs_OP);
