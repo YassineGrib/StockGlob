@@ -22,6 +22,7 @@ uses
 begin
   Application.Initialize;
   Application.MainFormOnTaskbar := True;
+  Application.CreateForm(TfmDB, fmDB);
   Application.CreateForm(TfmHome, fmHome);
   Application.CreateForm(TFmCategories_OP, FmCategories_OP);
   Application.CreateForm(TfmClients_OP, fmClients_OP);
@@ -35,6 +36,5 @@ begin
   Application.CreateForm(TfmSuppliers, fmSuppliers);
   Application.CreateForm(TfmClients, fmClients);
   Application.CreateForm(TDataM, DataM);
-  Application.CreateForm(TfmDB, fmDB);
   Application.Run;
 end.

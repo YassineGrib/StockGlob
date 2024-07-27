@@ -37,10 +37,11 @@ implementation
 
 procedure TFmCategories_OP.FormShow(Sender: TObject);
 begin
+{
  if DataM.Operation = 'Ajouter' then
   begin
    UtilisateurID.Text := Format('CAT%04d', [GetMaxID]);
-  end;
+  end;   }
 end;
 
 end.

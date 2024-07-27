@@ -40,6 +40,7 @@ type
     UtilisateurID  : integer;
     RecordID : integer;
     Operation : String;
+    DBname: string;
 
     procedure LoadUserPermissions(UserID: Integer);
     property CanAdd: Boolean read FCanAdd;
@@ -101,7 +102,6 @@ var
   Query: TFDQuery;
   DatabaseExists: Boolean;
   BackupPath: string;
-  DBname: string;
 begin
   DBname := 'Stock';
   BackupPath := ExtractFilePath(ParamStr(0)) + 'Database\' + DBname + '.bak';

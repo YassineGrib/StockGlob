@@ -31,9 +31,6 @@ object FmUtilisateurs: TFmUtilisateurs
     ParentBackground = False
     TabOrder = 0
     StyleElements = []
-    ExplicitLeft = 4
-    ExplicitTop = 4
-    ExplicitWidth = 988
     object spExit: TSpeedButton
       AlignWithMargins = True
       Left = 945
@@ -113,8 +110,6 @@ object FmUtilisateurs: TFmUtilisateurs
     ParentBackground = False
     TabOrder = 1
     StyleElements = []
-    ExplicitTop = 70
-    ExplicitWidth = 936
     object Image1: TImage
       AlignWithMargins = True
       Left = 776
@@ -504,8 +499,6 @@ object FmUtilisateurs: TFmUtilisateurs
     ParentBackground = False
     TabOrder = 3
     StyleElements = [seFont, seBorder]
-    ExplicitTop = 156
-    ExplicitWidth = 996
     object Desactiver: TSpeedButton
       AlignWithMargins = True
       Left = 416
@@ -608,7 +601,6 @@ object FmUtilisateurs: TFmUtilisateurs
       ParentCtl3D = False
       TabOrder = 0
       OnChange = edFilterChange
-      ExplicitLeft = 782
       ExplicitHeight = 30
     end
   end

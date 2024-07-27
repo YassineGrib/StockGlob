@@ -288,7 +288,7 @@ object FmCategories_OP: TFmCategories_OP
       Left = 44
       Top = 4
       Width = 233
-      Height = 34
+      Height = 22
       Margins.Left = 4
       Margins.Top = 4
       Margins.Right = 4
@@ -305,7 +305,6 @@ object FmCategories_OP: TFmCategories_OP
       ParentFont = False
       Layout = tlCenter
       StyleElements = []
-      ExplicitHeight = 22
     end
   end
   object ToolsPanel: TPanel
