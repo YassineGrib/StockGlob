@@ -60,9 +60,6 @@ implementation
 uses UnDB;
 
 {$R *.dfm}
-/// Start
-
-///// excel
 
 procedure TDataM.LoadUserPermissions(UserID: Integer);
 var
@@ -104,14 +101,32 @@ var
   Query: TFDQuery;
   DatabaseExists: Boolean;
   BackupPath: string;
+  DBname: string;
 begin
-  BackupPath := ExtractFilePath(ParamStr(0)) + 'Database\Stock.bak';
+  DBname := 'Stock';
+  BackupPath := ExtractFilePath(ParamStr(0)) + 'Database\' + DBname + '.bak';
   Query := TFDQuery.Create(nil);
   try
-    FDconnection.ExecSQL('RESTORE DATABASE stock FROM DISK = :BackupPath WITH REPLACE',
-        [BackupPath]);
-      ShowMessage('Database "stock" has been restored from backup.');
-      dataM.FDConnection.Params.Values['database'] := 'stock';
+    Query.Connection := FDConnection;
+    // التحقق من وجود قاعدة البيانات
+    Query.SQL.Text := 'SELECT database_id FROM sys.databases WHERE name = :DBname';
+    Query.ParamByName('DBname').AsString := DBname;
+    Query.Open;
+    DatabaseExists := not Query.FieldByName('database_id').IsNull;
+    Query.Close;
+    // إذا كانت قاعدة البيانات غير موجودة، يتم استعادتها
+    if not DatabaseExists then
+    begin
+      FDConnection.ExecSQL('RESTORE DATABASE ' + DBname + ' FROM DISK = :BackupPath WITH REPLACE',
+          [BackupPath]);
+      ShowMessage('Database ' + DBname + ' has been restored from backup.');
+      FDConnection.Params.Values['database'] := DBname;
+    end
+    else
+    begin
+      //ShowMessage('Database ' + DBname + ' already exists.');
+      FDConnection.Params.Values['database'] := DBname;
+    end;
   finally
     Query.Free;
   end;

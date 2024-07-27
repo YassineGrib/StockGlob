@@ -39,7 +39,6 @@ type
     Label8: TLabel;
     Label9: TLabel;
     Label10: TLabel;
-    FDQuery1: TFDQuery;
     admin: TToggleSwitch;
     Label11: TLabel;
     procedure spExitClick(Sender: TObject);
@@ -70,7 +69,6 @@ end;
 procedure TfmUtilisateurs_OP.FormShow(Sender: TObject);
 begin
 
-   DataM.Operation := 'Ajouter'     ;
 
  if DataM.Operation = 'Ajouter' then
   begin

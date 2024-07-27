@@ -21,6 +21,7 @@ type
     Initialiser: TSpeedButton;
     CategorieID: TEdit;
     NomCategorie: TEdit;
+    procedure FormShow(Sender: TObject);
   private
     { Private declarations }
   public
@@ -33,5 +34,13 @@ var
 implementation
 
 {$R *.dfm}
+
+procedure TFmCategories_OP.FormShow(Sender: TObject);
+begin
+ if DataM.Operation = 'Ajouter' then
+  begin
+   UtilisateurID.Text := Format('CAT%04d', [GetMaxID]);
+  end;
+end;
 
 end.

@@ -440,7 +440,6 @@ object fmUtilisateurs_OP: TfmUtilisateurs_OP
     ParentBackground = False
     TabOrder = 0
     StyleElements = []
-    ExplicitWidth = 741
     object spExit: TSpeedButton
       AlignWithMargins = True
       Left = 721
@@ -520,7 +519,6 @@ object fmUtilisateurs_OP: TfmUtilisateurs_OP
     ParentBackground = False
     TabOrder = 1
     StyleElements = [seFont, seBorder]
-    ExplicitWidth = 749
     object Valider: TSpeedButton
       AlignWithMargins = True
       Left = 12
@@ -690,9 +688,5 @@ object fmUtilisateurs_OP: TfmUtilisateurs_OP
     SwitchWidth = 63
     TabOrder = 11
     ThumbWidth = 19
-  end
-  object FDQuery1: TFDQuery
-    Left = 536
-    Top = 136
   end
 end
