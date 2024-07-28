@@ -29,6 +29,9 @@ type
     procedure spExitClick(Sender: TObject);
     procedure FormShow(Sender: TObject);
     procedure edFilterChange(Sender: TObject);
+    procedure AjouterClick(Sender: TObject);
+    procedure SupprimerClick(Sender: TObject);
+    procedure ModifierClick(Sender: TObject);
   private
     { Private declarations }
   public
@@ -45,7 +48,13 @@ implementation
 
 {$R *.dfm}
 
-uses DmData;
+uses DmData, UnCategories_OP;
+
+procedure TFmCategories.AjouterClick(Sender: TObject);
+begin
+DataM.Operation := 'Ajouter';
+fmCategories_op.showmodal;
+end;
 
 procedure TFmCategories.edFilterChange(Sender: TObject);
 begin
@@ -56,6 +65,12 @@ end;
 procedure TFmCategories.FormShow(Sender: TObject);
 begin
 FillDBGrid;
+end;
+
+procedure TFmCategories.ModifierClick(Sender: TObject);
+begin
+DataM.Operation := 'Modifier';
+fmCategories_op.showmodal;
 end;
 
 procedure TfmCategories.FillDBGrid(const SQLFilter: string = '');
@@ -109,4 +124,36 @@ begin
 Close;
 end;
 
+procedure TFmCategories.SupprimerClick(Sender: TObject);
+var
+  Confirmation: Integer;
+  FDQueryDelete: TFDQuery;
+begin
+  // التحقق من وجود بيانات في الشبكة ومعرف الطبيب غير فارغ
+  if Assigned(FDQFillDbGrid) and (FDQFillDbGrid.FieldByName('CategorieID') <> nil) and
+    not fmCategories.FDQFillDbGrid.FieldByName('CategorieID').IsNull then
+  begin
+    // حفظ معرف السجل قبل الحذف
+    DataM.RecordID := FDQFillDbGrid.FieldByName('CategorieID').AsInteger;
+    // طلب تأكيد قبل الحذف
+    Confirmation := MessageDlg('Êtes-vous sûr de vouloir supprimer cet enregistrement ?', mtConfirmation, [mbYes, mbNo], 0);
+    if Confirmation = mrYes then
+    begin
+      // إنشاء استعلام للحذف
+      FDQueryDelete := TFDQuery.Create(nil);
+      try
+        FDQueryDelete.Connection := DataM.FDConnection; // على افتراض أن DataM هو وحدة البيانات الخاصة بك
+        FDQueryDelete.SQL.Text := 'DELETE FROM TCategories WHERE CategorieID = :CategorieID';
+        FDQueryDelete.ParamByName('CategorieID').AsInteger := DataM.RecordID;
+        FDQueryDelete.ExecSQL;
+        // عرض رسالة بعد الحذف بنجاح
+        ShowMessage('Enregistrement supprimé avec succès.');
+        // تحديث الشبكة أو تنفيذ أي إجراءات ضرورية أخرى
+        FillDBGrid;
+      finally
+        FDQueryDelete.Free;
+      end;
+    end;
+  end;
+end;
 end.

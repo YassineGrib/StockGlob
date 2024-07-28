@@ -392,6 +392,7 @@ object FmCategories: TFmCategories
       ImageIndex = 7
       Images = DataM.ilNavigation
       Flat = True
+      OnClick = SupprimerClick
       ExplicitLeft = 417
       ExplicitTop = 7
       ExplicitHeight = 40
@@ -413,6 +414,7 @@ object FmCategories: TFmCategories
       HotImageIndex = 0
       Flat = True
       StyleElements = []
+      OnClick = AjouterClick
       ExplicitLeft = -5
       ExplicitTop = 3
       ExplicitHeight = 42
@@ -429,6 +431,7 @@ object FmCategories: TFmCategories
       ImageIndex = 8
       Images = DataM.ilNavigation
       Flat = True
+      OnClick = ModifierClick
       ExplicitLeft = 147
       ExplicitTop = 2
       ExplicitHeight = 40

@@ -1,6 +1,10 @@
 object FmCategories_OP: TFmCategories_OP
   Left = 0
   Top = 0
+  Margins.Left = 0
+  Margins.Top = 0
+  Margins.Right = 0
+  Margins.Bottom = 0
   BorderStyle = bsNone
   Caption = 'FmCategories_OP'
   ClientHeight = 319
@@ -232,23 +236,26 @@ object FmCategories_OP: TFmCategories_OP
   end
   object TitelPanel: TPanel
     AlignWithMargins = True
-    Left = 4
-    Top = 4
-    Width = 548
+    Left = 0
+    Top = 0
+    Width = 556
     Height = 42
-    Margins.Left = 4
-    Margins.Top = 4
-    Margins.Right = 4
-    Margins.Bottom = 4
+    Margins.Left = 0
+    Margins.Top = 0
+    Margins.Right = 0
+    Margins.Bottom = 0
     Align = alTop
     BevelOuter = bvNone
     Color = 16772569
     ParentBackground = False
     TabOrder = 0
     StyleElements = []
+    ExplicitLeft = 4
+    ExplicitTop = 4
+    ExplicitWidth = 548
     object spExit: TSpeedButton
       AlignWithMargins = True
-      Left = 512
+      Left = 520
       Top = 4
       Width = 32
       Height = 34
@@ -261,6 +268,7 @@ object FmCategories_OP: TFmCategories_OP
       Images = DataM.ilNavigation
       HotImageIndex = 12
       Flat = True
+      OnClick = spExitClick
       ExplicitLeft = 968
       ExplicitTop = 2
       ExplicitHeight = 32
@@ -288,7 +296,7 @@ object FmCategories_OP: TFmCategories_OP
       Left = 44
       Top = 4
       Width = 233
-      Height = 22
+      Height = 34
       Margins.Left = 4
       Margins.Top = 4
       Margins.Right = 4
@@ -305,12 +313,13 @@ object FmCategories_OP: TFmCategories_OP
       ParentFont = False
       Layout = tlCenter
       StyleElements = []
+      ExplicitHeight = 22
     end
   end
   object ToolsPanel: TPanel
     AlignWithMargins = True
     Left = 0
-    Top = 65
+    Top = 57
     Width = 556
     Height = 48
     Margins.Left = 0
@@ -323,6 +332,7 @@ object FmCategories_OP: TFmCategories_OP
     ParentBackground = False
     TabOrder = 1
     StyleElements = [seFont, seBorder]
+    ExplicitTop = 65
     object Valider: TSpeedButton
       AlignWithMargins = True
       Left = 12
@@ -337,6 +347,7 @@ object FmCategories_OP: TFmCategories_OP
       Images = DataM.ilNavigation
       Flat = True
       StyleElements = []
+      OnClick = ValiderClick
       ExplicitLeft = 13
       ExplicitTop = 4
       ExplicitHeight = 40

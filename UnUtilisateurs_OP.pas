@@ -99,6 +99,7 @@ var
 begin
 
 UtilisateurID  :=  GetMaxID  ;
+
   // التحقق من ملء جميع الحقول المطلوبة
   if (NomUtilisateur.Text = '') or (MotDePasse.Text = '') or (Statut.Text = '') then
   begin

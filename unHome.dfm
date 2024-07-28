@@ -341,7 +341,7 @@ object fmHome: TfmHome
     ParentFont = False
   end
   object Label11: TLabel
-    Left = 294
+    Left = 285
     Top = 663
     Width = 98
     Height = 25
@@ -359,7 +359,7 @@ object fmHome: TfmHome
     ParentFont = False
   end
   object Label12: TLabel
-    Left = 646
+    Left = 640
     Top = 663
     Width = 97
     Height = 25
