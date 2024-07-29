@@ -29,6 +29,8 @@ type
     procedure spExitClick(Sender: TObject);
     procedure FormShow(Sender: TObject);
     procedure edFilterChange(Sender: TObject);
+    procedure AjouterClick(Sender: TObject);
+    procedure ModifierClick(Sender: TObject);
 
   private
     { Private declarations }
@@ -46,7 +48,13 @@ implementation
 
 {$R *.dfm}
 
-uses DmData;
+uses DmData, UnMarques_OP;
+
+procedure TFMmarques.AjouterClick(Sender: TObject);
+begin
+DataM.Operation := 'Ajouter';
+fmMarques_op.showmodal;
+end;
 
 procedure TFMmarques.edFilterChange(Sender: TObject);
 begin
@@ -103,6 +111,12 @@ end;
 procedure TFMmarques.FormShow(Sender: TObject);
 begin
 FillDBGrid;
+end;
+
+procedure TFMmarques.ModifierClick(Sender: TObject);
+begin
+DataM.Operation := 'Modifier';
+fmMarques_op.showmodal;
 end;
 
 procedure TFMmarques.spExitClick(Sender: TObject);

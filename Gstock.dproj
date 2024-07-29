@@ -117,8 +117,8 @@
             <Form>fmClients</Form>
             <FormType>dfm</FormType>
         </DCCReference>
-        <DCCReference Include="UnSuppliers.pas">
-            <Form>fmSuppliers</Form>
+        <DCCReference Include="UnFournisseurs.pas">
+            <Form>fmFournisseurs</Form>
             <FormType>dfm</FormType>
         </DCCReference>
         <DCCReference Include="UnProduits.pas">
@@ -155,6 +155,26 @@
         </DCCReference>
         <DCCReference Include="UnDB.pas">
             <Form>fmDB</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
+        <DCCReference Include="UnMarques_OP.pas">
+            <Form>FmMarques_OP</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
+        <DCCReference Include="UnFournisseurs_OP.pas">
+            <Form>fmFournisseurs_OP</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
+        <DCCReference Include="UnProduits_OP.pas">
+            <Form>fmProduits_OP</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
+        <DCCReference Include="UnStockEntries.pas">
+            <Form>FmStockEntries</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
+        <DCCReference Include="UnStockEntries_OP.pas">
+            <Form>FmStockEntries_OP</Form>
             <FormType>dfm</FormType>
         </DCCReference>
         <BuildConfiguration Include="Base">

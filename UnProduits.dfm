@@ -513,14 +513,8 @@ object FmProduits: TFmProduits
     Width = 987
     Height = 246
     Align = alBottom
-    Font.Charset = ANSI_CHARSET
-    Font.Color = clWindowText
-    Font.Height = -18
-    Font.Name = 'Roboto Lt'
-    Font.Style = [fsBold]
     Options = [dgTitles, dgColumnResize, dgColLines, dgRowLines, dgTabs, dgRowSelect, dgConfirmDelete, dgCancelOnExit, dgTitleClick, dgTitleHotTrack]
     ParentColor = True
-    ParentFont = False
     TabOrder = 2
     TitleFont.Charset = ANSI_CHARSET
     TitleFont.Color = clWindowText
@@ -531,63 +525,47 @@ object FmProduits: TFmProduits
       item
         Alignment = taCenter
         Expanded = False
-        FieldName = 'EmployeeID'
+        FieldName = 'ProduitID'
         Title.Alignment = taCenter
-        Title.Caption = 'Employ'#233' ID'
+        Title.Caption = 'Produit ID'
         Width = 100
         Visible = True
       end
       item
         Alignment = taCenter
         Expanded = False
-        FieldName = 'DoctorID'
+        FieldName = 'NomCategorie'
         Title.Alignment = taCenter
-        Width = 100
-        Visible = True
-      end
-      item
-        Alignment = taCenter
-        Expanded = False
-        FieldName = 'FullName'
-        ImeName = 'US'
-        Title.Alignment = taCenter
-        Title.Caption = 'Nom Complet'
+        Title.Caption = 'Categorie'
         Width = 200
         Visible = True
       end
       item
         Alignment = taCenter
         Expanded = False
-        FieldName = 'PhoneNumber'
+        FieldName = 'NomMarque'
         ImeName = 'US'
         Title.Alignment = taCenter
-        Title.Caption = 'T'#233'l'#233'phone'
-        Width = 120
+        Title.Caption = 'Marque'
+        Width = 200
         Visible = True
       end
       item
         Alignment = taCenter
         Expanded = False
-        FieldName = 'Specialty'
+        FieldName = 'NomProduit'
+        ImeName = 'US'
         Title.Alignment = taCenter
-        Width = 250
+        Title.Caption = 'Produit'
+        Width = 360
         Visible = True
       end
       item
         Alignment = taCenter
         Expanded = False
-        FieldName = 'LicenseNumber'
+        FieldName = 'QuantiteMin'
         Title.Alignment = taCenter
-        Title.Caption = 'License N'#176
-        Width = 100
-        Visible = True
-      end
-      item
-        Alignment = taCenter
-        Expanded = False
-        FieldName = 'YearsOfExperience'
-        Title.Alignment = taCenter
-        Title.Caption = 'Experience'
+        Title.Caption = 'Quantite Min'
         Width = 100
         Visible = True
       end>
@@ -655,6 +633,7 @@ object FmProduits: TFmProduits
       HotImageIndex = 0
       Flat = True
       StyleElements = []
+      OnClick = AjouterClick
       ExplicitLeft = 13
       ExplicitTop = 4
       ExplicitHeight = 40
@@ -671,6 +650,7 @@ object FmProduits: TFmProduits
       ImageIndex = 8
       Images = DataM.ilNavigation
       Flat = True
+      OnClick = ModifierClick
       ExplicitLeft = 147
       ExplicitTop = 2
       ExplicitHeight = 40
@@ -702,6 +682,7 @@ object FmProduits: TFmProduits
       ImageIndex = 3
       Images = DataM.ilNavigation
       Flat = True
+      OnClick = ExporterClick
       ExplicitLeft = 552
       ExplicitTop = 4
       ExplicitHeight = 40
@@ -723,6 +704,7 @@ object FmProduits: TFmProduits
       Ctl3D = True
       ParentCtl3D = False
       TabOrder = 0
+      OnChange = edFilterChange
       ExplicitHeight = 30
     end
   end

@@ -98,6 +98,25 @@ CREATE TABLE TJournalDeModifications (
     FOREIGN KEY (UtilisateurID) REFERENCES TUtilisateurs(UtilisateurID)
 );
 
+CREATE TABLE TStockEntries (
+    EntryID INT IDENTITY(1,1) PRIMARY KEY,
+    ProduitID INT,
+    Quantite INT,
+    DateEntree DATETIME,
+    FournisseurID INT,
+    DateExpiration DATETIME,
+    UtilisateurID INT,
+    BonDentreeID INT,
+    PrixAchat DECIMAL(18, 2),
+    FOREIGN KEY (ProduitID) REFERENCES TProduits(ProduitID),
+    FOREIGN KEY (FournisseurID) REFERENCES TFournisseurs(FournisseurID),
+    FOREIGN KEY (UtilisateurID) REFERENCES TUtilisateurs(UtilisateurID)
+);
+GO
+
+
+
+
 -- Trigger 
 -- Trigger clients
 CREATE TRIGGER trgAprèsInsertionTClients

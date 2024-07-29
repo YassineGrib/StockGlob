@@ -1,0 +1,16 @@
+object FmStockEntries: TFmStockEntries
+  Left = 0
+  Top = 0
+  BorderStyle = bsNone
+  ClientHeight = 567
+  ClientWidth = 1021
+  Color = clWhite
+  Font.Charset = ANSI_CHARSET
+  Font.Color = clWindowText
+  Font.Height = -18
+  Font.Name = 'Roboto Cn'
+  Font.Style = []
+  Position = poDesktopCenter
+  Scaled = False
+  TextHeight = 22
+end

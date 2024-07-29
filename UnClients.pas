@@ -64,10 +64,6 @@ begin
   // عند عرض نموذج الموظف، يتم ملء شبكة البيانات
   FillDBGrid;
   CheckUserPermissions;
-
-
-
-
 end;
 
 procedure TfmClients.ModifierClick(Sender: TObject);
@@ -212,4 +208,5 @@ begin
     end;
   end;
 end;
+
 end.

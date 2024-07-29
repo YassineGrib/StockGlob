@@ -75,8 +75,9 @@ implementation
 
 {$R *.dfm}
 
-uses DmData, UnClients, UnSuppliers, UnProduits, UnAuthentification,
-  UnCategories, UnClients_OP, UnJournale, UnMarques, UnUtilisateurs, UnDB;
+uses DmData, UnClients,  UnProduits, UnAuthentification,
+  UnCategories, UnClients_OP, UnJournale, UnMarques, UnUtilisateurs, UnDB,
+  UnFournisseurs;
 
 
 
@@ -138,7 +139,7 @@ end;
 
 procedure TfmHome.SpeedButton5Click(Sender: TObject);
 begin
-FmSuppliers.ShowModal();
+FmFournisseurs.ShowModal();
 end;
 
 procedure TfmHome.spExitClick(Sender: TObject);

@@ -697,7 +697,7 @@ object fmHome: TfmHome
       Left = 44
       Top = 4
       Width = 190
-      Height = 34
+      Height = 22
       Margins.Left = 4
       Margins.Top = 4
       Margins.Right = 4
@@ -714,7 +714,6 @@ object fmHome: TfmHome
       ParentFont = False
       Layout = tlCenter
       StyleElements = []
-      ExplicitHeight = 22
     end
   end
   object ToolsPanel: TPanel

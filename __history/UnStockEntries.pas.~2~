@@ -1,0 +1,41 @@
+unit UnStockEntries;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Data.DB, Vcl.Grids, Vcl.DBGrids,
+  Vcl.StdCtrls, Vcl.Imaging.pngimage, Vcl.ExtCtrls, Vcl.Buttons;
+
+type
+  TFmStockEntries = class(TForm)
+    TitelPanel: TPanel;
+    spExit: TSpeedButton;
+    spLogo: TSpeedButton;
+    Titel: TLabel;
+    logoPanel: TPanel;
+    Image1: TImage;
+    Label3: TLabel;
+    ToolsPanel: TPanel;
+    Supprimer: TSpeedButton;
+    Consulter: TSpeedButton;
+    Ajouter: TSpeedButton;
+    Modifier: TSpeedButton;
+    Find: TSpeedButton;
+    Exporter: TSpeedButton;
+    edFilter: TEdit;
+    dbgrid: TDBGrid;
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  FmStockEntries: TFmStockEntries;
+
+implementation
+
+{$R *.dfm}
+
+end.
